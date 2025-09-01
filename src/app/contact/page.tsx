@@ -61,7 +61,7 @@ export default function Contact() {
             </div>
 
             {/* 追加情報 */}
-            <div className="pt-6 border-t border-gray-200">
+            <div className="mt-4 pt-6 border-t border-gray-200">
               <p className="text-sm text-gray-500">
                 通常、メールは24時間以内、XのDMは数時間以内に返信いたします。<br />
                 お急ぎの場合は、XのDMでお知らせください。
