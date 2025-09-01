@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { works } from "@/data/work";
 
@@ -47,8 +48,18 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end">
-              <div className="w-64 h-64 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-6xl font-bold">H</span>
+              <div className="relative">
+                {/* プロフィール画像 */}
+                <div className="w-64 h-64 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                  <Image
+                    src="/images/profile.jpg"
+                    alt="Hamatai's profile picture"
+                    width={256}
+                    height={256}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </div>
