@@ -85,12 +85,16 @@ export default function Home() {
               {recentWorks.map((work) => (
                 <div key={work.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
                   <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    {/* 実際の画像がある場合は以下を使用 */}
-                    {/* <img src={work.image} alt={work.title} className="w-full h-full object-cover" /> */}
-                    <span className="text-gray-500">{work.title}</span>
+                    <Image 
+                      src={work.image} 
+                      alt={work.title} 
+                      width={400}
+                      height={192}
+                      className="w-full h-full object-cover" 
+                    />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{work.title}</h3>
+                    <h3 className="text-xl text-blue-600 font-semibold mb-2">{work.title}</h3>
                     <p className="text-gray-600 mb-4">{work.description}</p>
                     <div className="flex gap-2 flex-wrap">
                       {work.technologies.slice(0, 3).map((tech) => (
