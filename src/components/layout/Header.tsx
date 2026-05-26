@@ -1,85 +1,126 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { Link } from '@/i18n/navigation';
+import { usePathname } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Works', href: '/works' },
-  { name: 'Blogs', href: '/blogs' },
-];
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const t = useTranslations('nav');
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { label: t('about'), href: '/about' },
+    { label: t('works'), href: '/works' },
+    { label: t('services'), href: '/services' },
+    { label: t('news'), href: '/news' },
+  ];
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + '/');
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">メニューを開く</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-        <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-surface/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20'
+          : 'bg-transparent'
+      }`}
+    >
+      <nav className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-primary font-bold text-lg tracking-tight hover:text-accent transition-colors"
+        >
+          hamatai
+          <span className="text-accent">.</span>
+        </Link>
+
+        {/* Desktop navigation */}
+        <div className="hidden lg:flex items-center gap-8">
+          {navItems.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors"
+              className={`text-sm font-medium transition-colors relative group ${
+                isActive(item.href)
+                  ? 'text-primary'
+                  : 'text-secondary hover:text-primary'
+              }`}
             >
-              {item.name}
+              {item.label}
+              <span
+                className={`absolute -bottom-0.5 left-0 h-px bg-accent transition-all duration-200 ${
+                  isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
+              />
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+
+        {/* Right: Lang switcher + CTA */}
+        <div className="hidden lg:flex items-center gap-5">
+          <LanguageSwitcher />
           <Link
             href="/contact"
-            className="text-sm font-semibold leading-6 text-gray-900 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-dark transition-colors"
           >
-            Contact
+            {t('contact')}
           </Link>
         </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="lg:hidden text-secondary hover:text-primary transition-colors p-1"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? (
+            <XMarkIcon className="h-6 w-6" />
+          ) : (
+            <Bars3Icon className="h-6 w-6" />
+          )}
+        </button>
       </nav>
-      
+
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden">
-          <div className="fixed inset-0 z-50" />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <span className="text-xl font-bold text-gray-900">Hamatai</span>
-              </Link>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(false)}
+      {mobileOpen && (
+        <div className="lg:hidden bg-surface-subtle border-b border-white/5">
+          <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`py-3 px-2 text-sm font-medium border-b border-white/5 last:border-0 transition-colors ${
+                  isActive(item.href)
+                    ? 'text-primary'
+                    : 'text-secondary hover:text-primary'
+                }`}
+                onClick={() => setMobileOpen(false)}
               >
-                <span className="sr-only">メニューを閉じる</span>
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                {item.label}
+              </Link>
+            ))}
+            <div className="pt-3 flex items-center justify-between">
+              <LanguageSwitcher />
+              <Link
+                href="/contact"
+                className="px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg"
+                onClick={() => setMobileOpen(false)}
+              >
+                {t('contact')}
+              </Link>
             </div>
           </div>
         </div>

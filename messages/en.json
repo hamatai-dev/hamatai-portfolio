@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "siteTitle": "Taishi Hamano | Freelance Web Engineer",
+    "siteDescription": "Freelance web engineer specializing in web applications, websites, Notion Wiki, and mobile apps."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "works": "Works",
+    "services": "Services",
+    "news": "News",
+    "contact": "Contact"
+  },
+  "common": {
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "contact": "Contact",
+    "viewSite": "View Site",
+    "viewGitHub": "View GitHub",
+    "readMore": "Read More",
+    "backToList": "Back to List"
+  },
+  "hero": {
+    "available": "Available for Work",
+    "role": "Freelance Web Engineer",
+    "description": "From web applications to landing pages, Notion Wiki, and mobile apps — I cover it all.",
+    "ctaPrimary": "Get in Touch",
+    "ctaSecondary": "View Works",
+    "statLabel1": "Independent",
+    "statValue1": "Since Apr 2026",
+    "statLabel2": "Status",
+    "statValue2": "Available",
+    "statLabel3": "Location",
+    "statValue3": "Japan / Remote"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "What I Do",
+    "description": "I offer a wide range of services tailored to your needs.",
+    "viewAll": "View All Services",
+    "webapp": {
+      "title": "Web App Development",
+      "description": "Full-stack development with React / Next.js. From requirements to design, implementation, and release."
+    },
+    "homepage": {
+      "title": "Website Creation",
+      "description": "LP and corporate website creation. End-to-end from design to implementation with SEO optimization."
+    },
+    "notion": {
+      "title": "Notion Wiki Setup",
+      "description": "Streamline information management with Notion. Database design, page structure, and team wikis."
+    },
+    "mobile": {
+      "title": "Mobile App Development",
+      "description": "iOS / Android app development. Cross-platform development for cost-effective, high-quality apps."
+    },
+    "frontend": {
+      "title": "Frontend Development",
+      "description": "UI implementation and code refactoring. Modern tech stack for high-quality UI/UX."
+    },
+    "consulting": {
+      "title": "Tech Consulting",
+      "description": "Technology selection and architecture consulting. Supporting technical decisions for development teams."
+    }
+  },
+  "works": {
+    "title": "Works",
+    "subtitle": "Portfolio",
+    "description": "A selection of products and projects I have built.",
+    "viewAll": "View All Works",
+    "viewSite": "View Site",
+    "viewGitHub": "View GitHub"
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "Latest Updates",
+    "description": "I share tech articles and project updates.",
+    "articles": "Latest Articles",
+    "followMe": "Follow Me",
+    "readMore": "Read More",
+    "viewAll": "View All Articles",
+    "noArticles": "No articles yet. Please check back soon.",
+    "backToList": "Back to Articles",
+    "publishedAt": "Published"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "About Me",
+    "bio": "I went independent in April 2026 and have been working as a freelance web engineer. My strength is handling everything end-to-end — from requirements and design to implementation and release — across both frontend and backend.",
+    "skills": "Skills & Technologies",
+    "career": "Career",
+    "name": "Taishi Hamano",
+    "nameEn": "Taishi Hamano",
+    "role": "Freelance Web Engineer",
+    "location": "Japan",
+    "available": "Available for New Projects",
+    "contactCta": "Get in Touch"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in Touch",
+    "description": "Feel free to reach out for project inquiries or consultations. I typically respond within 1–2 business days.",
+    "name": "Name",
+    "namePlaceholder": "John Doe",
+    "company": "Company (optional)",
+    "companyPlaceholder": "Acme Inc.",
+    "email": "Email",
+    "emailPlaceholder": "example@email.com",
+    "type": "Inquiry Type",
+    "typePlaceholder": "Select a type",
+    "message": "Message",
+    "messagePlaceholder": "Please describe your project, timeline, and budget (min. 10 characters)",
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "successTitle": "Message Sent",
+    "successMessage": "Thank you for reaching out! I will get back to you within 1–2 business days.",
+    "errorMessage": "Failed to send. Please try again later or contact me via social media.",
+    "types": {
+      "webapp": "Web App Development",
+      "homepage": "Website Creation",
+      "notion": "Notion Wiki Setup",
+      "mobile": "Mobile App Development",
+      "frontend": "Frontend Development",
+      "consulting": "Tech Consulting",
+      "other": "Other"
+    }
+  },
+  "footer": {
+    "description": "Freelance web engineer covering web apps, websites, Notion, and mobile.",
+    "links": "Links",
+    "social": "Social",
+    "copyright": "© {year} Taishi Hamano. All rights reserved."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "siteTitle": "Taishi Hamano | フリーランス Webエンジニア",
+    "siteDescription": "WebアプリケーションからLPサイト、Notion Wiki構築、モバイルアプリまで幅広く対応するフリーランスエンジニアです。"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "works": "Works",
+    "services": "Services",
+    "news": "News",
+    "contact": "Contact"
+  },
+  "common": {
+    "viewAll": "すべて見る",
+    "learnMore": "詳しく見る",
+    "contact": "お問い合わせ",
+    "viewSite": "サイトを見る",
+    "viewGitHub": "GitHubを見る",
+    "readMore": "続きを読む",
+    "backToList": "一覧に戻る"
+  },
+  "hero": {
+    "available": "受付中",
+    "role": "フリーランス Webエンジニア",
+    "description": "WebアプリケーションからLPサイト、Notion Wiki構築、モバイルアプリまで一気通貫で対応します。",
+    "ctaPrimary": "お問い合わせ",
+    "ctaSecondary": "実績を見る",
+    "statLabel1": "独立",
+    "statValue1": "2026年4月〜",
+    "statLabel2": "稼働状況",
+    "statValue2": "受付中",
+    "statLabel3": "対応エリア",
+    "statValue3": "全国・リモート可"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "提供サービス",
+    "description": "お客様のニーズに合わせた幅広いサービスを提供しています。",
+    "viewAll": "すべてのサービスを見る",
+    "webapp": {
+      "title": "Webアプリ開発",
+      "description": "React / Next.js を中心としたフルスタック開発。要件定義から設計・実装・リリースまで一気通貫で対応します。"
+    },
+    "homepage": {
+      "title": "ホームページ制作",
+      "description": "LP・コーポレートサイトの制作。デザインから実装まで一貫して対応し、SEOにも配慮したサイトを制作します。"
+    },
+    "notion": {
+      "title": "Notion Wiki構築",
+      "description": "組織の情報管理をNotionで効率化。データベース設計からページ構成まで、使いやすい環境を構築します。"
+    },
+    "mobile": {
+      "title": "モバイルアプリ開発",
+      "description": "iOS / Android アプリの開発。クロスプラットフォーム開発でコスト効率よく高品質なアプリを提供します。"
+    },
+    "frontend": {
+      "title": "フロントエンド開発",
+      "description": "UIの実装・既存コードのリファクタリング。モダンな技術スタックで高品質なUI/UXを実現します。"
+    },
+    "consulting": {
+      "title": "技術顧問・コンサル",
+      "description": "技術選定・アーキテクチャ設計の相談。開発チームの立ち上げや技術的な意思決定をサポートします。"
+    }
+  },
+  "works": {
+    "title": "Works",
+    "subtitle": "実績・制作物",
+    "description": "これまでに開発したプロダクトや制作物の一部を紹介します。",
+    "viewAll": "すべての実績を見る",
+    "viewSite": "サイトを見る",
+    "viewGitHub": "GitHubを見る"
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "最新情報・記事",
+    "description": "技術記事やプロジェクトの最新情報を発信しています。",
+    "articles": "最新記事",
+    "followMe": "SNSでフォロー",
+    "readMore": "続きを読む",
+    "viewAll": "すべての記事を見る",
+    "noArticles": "現在記事がありません。しばらくお待ちください。",
+    "backToList": "記事一覧に戻る",
+    "publishedAt": "公開日"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "自己紹介",
+    "bio": "2026年4月より独立し、フリーランスWebエンジニアとして活動しています。フロントエンド・バックエンドを問わず幅広く対応でき、要件定義から設計・実装・リリースまで一貫して携わることが強みです。",
+    "skills": "スキル・技術",
+    "career": "経歴",
+    "name": "濱野 大志",
+    "nameEn": "Taishi Hamano",
+    "role": "フリーランス Webエンジニア",
+    "location": "日本",
+    "available": "新規案件受付中",
+    "contactCta": "お問い合わせはこちら"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "お問い合わせ",
+    "description": "お仕事のご依頼やご相談はお気軽にどうぞ。通常1〜2営業日以内にご返信いたします。",
+    "name": "お名前",
+    "namePlaceholder": "山田 太郎",
+    "company": "会社名（任意）",
+    "companyPlaceholder": "株式会社〇〇",
+    "email": "メールアドレス",
+    "emailPlaceholder": "example@email.com",
+    "type": "お問い合わせ種別",
+    "typePlaceholder": "選択してください",
+    "message": "お問い合わせ内容",
+    "messagePlaceholder": "ご依頼の概要・スケジュール感などをご記入ください（10文字以上）",
+    "submit": "送信する",
+    "submitting": "送信中...",
+    "successTitle": "送信完了",
+    "successMessage": "お問い合わせありがとうございます。1〜2営業日以内にご連絡いたします。",
+    "errorMessage": "送信に失敗しました。時間をおいて再度お試しいただくか、SNSよりご連絡ください。",
+    "types": {
+      "webapp": "Webアプリ開発のご依頼",
+      "homepage": "ホームページ制作のご依頼",
+      "notion": "Notion Wiki構築のご依頼",
+      "mobile": "モバイルアプリ開発のご依頼",
+      "frontend": "フロントエンド開発のご依頼",
+      "consulting": "技術顧問・コンサルのご依頼",
+      "other": "その他"
+    }
+  },
+  "footer": {
+    "description": "フリーランスWebエンジニアとして、Webアプリ開発からモバイルまで幅広く対応します。",
+    "links": "リンク",
+    "social": "SNS",
+    "copyright": "© {year} Taishi Hamano. All rights reserved."
+  }
+}
