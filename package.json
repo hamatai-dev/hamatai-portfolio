@@ -15,7 +15,7 @@
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "microcms-js-sdk": "^3.4.0",
-    "next": "15.5.2",
+    "next": "^15.5.18",
     "next-intl": "^4.12.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
