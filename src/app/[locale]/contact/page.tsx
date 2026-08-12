@@ -20,18 +20,18 @@ function ContactInfo() {
   const items = [
     {
       icon: ClockIcon,
-      title: '返信目安',
-      desc: '1〜2営業日以内',
+      title: t('infoReplyTitle'),
+      desc: t('infoReplyDesc'),
     },
     {
       icon: EnvelopeIcon,
-      title: 'メール',
-      desc: 'フォームからご送信ください',
+      title: t('infoEmailTitle'),
+      desc: t('infoEmailDesc'),
     },
     {
       icon: ChatBubbleLeftRightIcon,
-      title: 'SNS',
-      desc: 'X (@hamatai_7109) でも受付中',
+      title: t('infoSnsTitle'),
+      desc: t('infoSnsDesc'),
     },
   ];
 
