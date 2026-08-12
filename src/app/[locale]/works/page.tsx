@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
@@ -28,13 +28,15 @@ function WorkCard({
   work: (typeof works)[number];
   t: ReturnType<typeof useTranslations>;
 }) {
+  const locale = useLocale() as 'ja' | 'en';
+
   return (
     <div className="group bg-surface-card rounded-2xl border border-white/5 overflow-hidden hover:border-accent/20 transition-all duration-300">
       {/* Thumbnail */}
       <div className="relative h-52 bg-surface-raised overflow-hidden">
         <Image
           src={work.image}
-          alt={work.title}
+          alt={work.title[locale]}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -42,9 +44,9 @@ function WorkCard({
 
       {/* Content */}
       <div className="p-6">
-        <h2 className="text-primary font-bold text-lg mb-2">{work.title}</h2>
+        <h2 className="text-primary font-bold text-lg mb-2">{work.title[locale]}</h2>
         <p className="text-secondary text-sm leading-relaxed mb-4">
-          {work.description}
+          {work.description[locale]}
         </p>
 
         {/* Tech */}

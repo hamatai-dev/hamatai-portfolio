@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import {
@@ -198,6 +198,7 @@ function ServicesSection() {
 
 function WorksSection() {
   const t = useTranslations('works');
+  const locale = useLocale() as 'ja' | 'en';
   const recentWorks = works.filter((w) => w.featured).slice(0, 3);
 
   return (
@@ -228,7 +229,7 @@ function WorksSection() {
               <div className="relative h-48 bg-surface-raised overflow-hidden">
                 <Image
                   src={work.image}
-                  alt={work.title}
+                  alt={work.title[locale]}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -237,10 +238,10 @@ function WorksSection() {
               {/* Content */}
               <div className="p-5">
                 <h3 className="text-primary font-semibold text-base mb-2">
-                  {work.title}
+                  {work.title[locale]}
                 </h3>
                 <p className="text-secondary text-sm leading-relaxed mb-4 line-clamp-2">
-                  {work.description}
+                  {work.description[locale]}
                 </p>
 
                 {/* Tech badges */}
