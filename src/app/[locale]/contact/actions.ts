@@ -31,7 +31,7 @@ export async function sendContactEmail(data: unknown) {
   const resend = new Resend(resendApiKey);
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: `hamatai.com お問い合わせ <${process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev'}>`,
       to: process.env.CONTACT_TO_EMAIL ?? 'thdev7109@gmail.com',
       replyTo: email,
@@ -48,6 +48,11 @@ export async function sendContactEmail(data: unknown) {
 ${message}
       `.trim(),
     });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return { success: false, error: 'Failed to send email' };
+    }
 
     return { success: true };
   } catch (err) {
