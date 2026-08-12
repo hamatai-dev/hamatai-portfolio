@@ -18,6 +18,9 @@ export default function Footer() {
   const socials = [
     { label: 'GitHub', href: 'https://github.com/hamatai-dev' },
     { label: 'X (Twitter)', href: 'https://x.com/hamatai_7109' },
+    { label: 'note', href: 'https://note.com/hamataishi_7109' },
+    { label: 'Instagram', href: 'https://www.instagram.com/hamatai_7109' },
+    { label: 'Facebook', href: 'https://www.facebook.com/bigambitiooooon' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/bigambitiooon/' },
   ];
 

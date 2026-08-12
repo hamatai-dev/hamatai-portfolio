@@ -25,7 +25,7 @@ const snsLinks = [
   {
     id: 'note',
     name: 'note',
-    href: 'https://note.com/', // ← あなたのnote URLを設定してください
+    href: 'https://note.com/hamataishi_7109',
     color: '#41C9B4',
     icon: '✏️',
   },
@@ -39,14 +39,14 @@ const snsLinks = [
   {
     id: 'instagram',
     name: 'Instagram',
-    href: 'https://instagram.com/', // ← あなたのInstagram URLを設定してください
+    href: 'https://www.instagram.com/hamatai_7109',
     color: '#E1306C',
     icon: '📸',
   },
   {
     id: 'facebook',
     name: 'Facebook',
-    href: 'https://facebook.com/', // ← あなたのFacebook URLを設定してください
+    href: 'https://www.facebook.com/bigambitiooooon',
     color: '#1877F2',
     icon: '📘',
   },
