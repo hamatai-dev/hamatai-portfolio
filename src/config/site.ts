@@ -1,4 +1,5 @@
 export const SITE_URL = 'https://hamatai.com';
+export const GA_MEASUREMENT_ID = 'G-CP3VCKJ9B8';
 export const SITE_NAME = 'Taishi Hamano';
 export const AUTHOR_NAME_JA = '濱野 大志';
 export const AUTHOR_NAME_EN = 'Taishi Hamano';

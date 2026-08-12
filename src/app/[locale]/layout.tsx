@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getTranslations, getLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -8,7 +9,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPersonWebsiteJsonLd } from '@/lib/jsonld';
-import { SITE_URL } from '@/config/site';
+import { SITE_URL, GA_MEASUREMENT_ID } from '@/config/site';
 import '../globals.css';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
@@ -72,6 +73,7 @@ export default async function LocaleLayout({
           <main className="flex-1 pt-16">{children}</main>
           <Footer />
         </NextIntlClientProvider>
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );
