@@ -17,21 +17,6 @@ export const works: Work[] = [
     featured: true,
   },
   {
-    id: 'pomodoro-timer',
-    title: { ja: 'ポモドーロタイマー', en: 'Pomodoro Timer' },
-    description: {
-      ja: '作業時間と休憩時間を設定し、ポモドーロテクニックを実践できるタイマーアプリ。ペアプログラミング時に活用。',
-      en: 'A timer app for practicing the Pomodoro Technique with configurable work and break intervals. Used during pair programming sessions.',
-    },
-    image: '/images/works/pomodoro-timer.png',
-    category: 'webapp',
-    technologies: ['Vue.js', 'TypeScript', 'Pinia'],
-    githubUrl: 'https://github.com/hamatai-dev/pomodoro-timer',
-    liveUrl: 'https://pomodoro-timer-six-lovat.vercel.app/',
-    createdAt: '2025-09-06',
-    featured: true,
-  },
-  {
     id: 'bar-kan',
     title: { ja: 'バーカン(売上/顧客/シフト管理)', en: 'Bar-kan (Sales / Customer / Shift Management)' },
     description: {
