@@ -103,12 +103,6 @@ function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* Decorative corner badge */}
-      <div className="hidden lg:block absolute bottom-10 right-10 z-10 bg-surface-card border border-white/10 rounded-xl px-4 py-3 shadow-xl">
-        <p className="text-muted text-xs">Freelance</p>
-        <p className="text-primary text-sm font-bold">Web Engineer</p>
-      </div>
     </section>
   );
 }
