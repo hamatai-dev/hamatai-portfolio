@@ -25,4 +25,15 @@ export const works: Work[] = [
     createdAt: '2025-09-06',
     featured: true,
   },
+  {
+    id: 'bar-kan',
+    title: 'バーカン(売上/顧客/シフト管理)',
+    description:
+      '小規模のバーやスナックを対象にした売上管理、顧客管理、シフト管理アプリ。データを複数端末でリアルタイム同期させ、オーナーが外出していても店舗の状況が即座に分かる。将来的にはAIを活用した顧客分析、売上促進の提案をアプリ上で実装予定。',
+    image: '/images/works/bar-kan.png',
+    technologies: ['Next.js', 'Supabase', 'Vercel'],
+    liveUrl: 'https://bar-kan.com/',
+    createdAt: '2026-08-11',
+    featured: true,
+  },
 ];
