@@ -9,7 +9,7 @@ export const works: Work[] = [
     image: '/images/works/portfolio-site.jpg',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'microCMS'],
     githubUrl: 'https://github.com/hamatai-dev/hamatai-portfolio',
-    liveUrl: 'https://hamatai-portfolio.vercel.app/',
+    liveUrl: 'https://hamatai.com',
     createdAt: '2025-09-01',
     featured: true,
   },
