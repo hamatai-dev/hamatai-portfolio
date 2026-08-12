@@ -1,5 +1,7 @@
+import type { Locale } from 'use-intl';
 import { getTranslations } from 'next-intl/server';
 import { useTranslations, useLocale } from 'next-intl';
+import { getLocalizedAlternates } from '@/lib/seo';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import {
@@ -23,7 +25,10 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
-  return { title: t('siteTitle') };
+  return {
+    title: t('siteTitle'),
+    alternates: getLocalizedAlternates('/', locale as Locale),
+  };
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────

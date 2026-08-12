@@ -1,11 +1,16 @@
+import type { Locale } from 'use-intl';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import { Link } from '@/i18n/navigation';
+import { Link, getPathname } from '@/i18n/navigation';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { notFound } from 'next/navigation';
 import { getArticle, getArticlePaths } from '@/lib/microcms';
 import { formatDate } from '@/lib/utils';
 import { Badge } from '@/components/ui/Badge';
+import { getLocalizedAlternates } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildArticleJsonLd, buildBreadcrumbJsonLd } from '@/lib/jsonld';
+import { SITE_URL } from '@/config/site';
 
 export async function generateStaticParams() {
   const paths = await getArticlePaths();
@@ -20,17 +25,21 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const article = await getArticle(slug);
   if (!article) return {};
   return {
     title: article.title,
-    description: article.description,
+    ...(article.description ? { description: article.description } : {}),
     openGraph: {
       title: article.title,
-      description: article.description,
+      ...(article.description ? { description: article.description } : {}),
       images: article.thumbnail ? [article.thumbnail.url] : [],
     },
+    alternates: getLocalizedAlternates(`/news/${slug}`, locale as Locale, {
+      canonicalLocale: 'ja',
+    }),
+    ...(article.noindex ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
@@ -41,12 +50,23 @@ export default async function ArticlePage({
 }) {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'news' });
+  const tNav = await getTranslations({ locale, namespace: 'nav' });
   const article = await getArticle(slug);
 
   if (!article) notFound();
 
+  const articleUrl = `${SITE_URL}${getPathname({ href: `/news/${slug}`, locale: 'ja' })}`;
+  const articleJsonLd = buildArticleJsonLd(article, articleUrl);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: tNav('home'), url: SITE_URL },
+    { name: tNav('news'), url: `${SITE_URL}/news` },
+    { name: article.title, url: articleUrl },
+  ]);
+
   return (
     <div className="mx-auto max-w-3xl px-6 lg:px-8 py-16">
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* Back */}
       <Link
         href="/news"

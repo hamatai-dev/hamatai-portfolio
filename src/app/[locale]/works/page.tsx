@@ -1,3 +1,4 @@
+import type { Locale } from 'use-intl';
 import { getTranslations } from 'next-intl/server';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
@@ -5,6 +6,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
 import { works } from '@/data/work';
 import { WorkCategory } from '@/types/work';
+import { getLocalizedAlternates } from '@/lib/seo';
 
 const CATEGORIES: { key: WorkCategory; labelKey: 'categoryWebsite' | 'categoryWebapp' }[] = [
   { key: 'website', labelKey: 'categoryWebsite' },
@@ -18,7 +20,12 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'works' });
-  return { title: t('title') };
+  return {
+    title: t('title'),
+    description: t('description'),
+    openGraph: { title: t('title'), description: t('description') },
+    alternates: getLocalizedAlternates('/works', locale as Locale),
+  };
 }
 
 function WorkCard({

@@ -6,6 +6,9 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildPersonWebsiteJsonLd } from '@/lib/jsonld';
+import { SITE_URL } from '@/config/site';
 import '../globals.css';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
@@ -23,6 +26,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'meta' });
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: {
       default: t('siteTitle'),
       template: `%s | Taishi Hamano`,
@@ -59,6 +63,7 @@ export default async function LocaleLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-surface text-primary`}
       >
+        <JsonLd data={buildPersonWebsiteJsonLd()} />
         <NextIntlClientProvider>
           <Header />
           <main className="flex-1 pt-16">{children}</main>

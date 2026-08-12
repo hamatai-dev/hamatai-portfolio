@@ -1,3 +1,4 @@
+import type { Locale } from 'use-intl';
 import { getTranslations } from 'next-intl/server';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
@@ -5,6 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { ArrowRightIcon, MapPinIcon, CalendarIcon } from '@heroicons/react/24/outline';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
+import { getLocalizedAlternates } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -13,7 +15,12 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about' });
-  return { title: t('title') };
+  return {
+    title: t('title'),
+    description: t('bio'),
+    openGraph: { title: t('title'), description: t('bio') },
+    alternates: getLocalizedAlternates('/about', locale as Locale),
+  };
 }
 
 // ── Skills ────────────────────────────────────────────────────────────────────

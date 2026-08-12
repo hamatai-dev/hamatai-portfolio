@@ -1,8 +1,10 @@
+import type { Locale } from 'use-intl';
 import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { EnvelopeIcon, ClockIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { ContactForm } from './ContactForm';
+import { getLocalizedAlternates } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -11,7 +13,12 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contact' });
-  return { title: t('title') };
+  return {
+    title: t('title'),
+    description: t('description'),
+    openGraph: { title: t('title'), description: t('description') },
+    alternates: getLocalizedAlternates('/contact', locale as Locale),
+  };
 }
 
 function ContactInfo() {

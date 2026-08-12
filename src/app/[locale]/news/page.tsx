@@ -1,3 +1,4 @@
+import type { Locale } from 'use-intl';
 import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -8,6 +9,10 @@ import { Badge } from '@/components/ui/Badge';
 import { getArticles } from '@/lib/microcms';
 import { formatDate } from '@/lib/utils';
 import type { MicroCMSArticle } from '@/types/microcms';
+import { getLocalizedAlternates } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
+import { SITE_URL, socialLinks } from '@/config/site';
 
 export async function generateMetadata({
   params,
@@ -16,55 +21,48 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'news' });
-  return { title: t('title') };
+  return {
+    title: t('title'),
+    description: t('description'),
+    openGraph: { title: t('title'), description: t('description') },
+    alternates: getLocalizedAlternates('/news', locale as Locale),
+  };
 }
 
 // ── SNS links ─────────────────────────────────────────────────────────────────
+// href/labelは src/config/site.ts の socialLinks を単一の情報源とし、
+// 見た目(色・アイコン)のみこのページ固有で保持する。
 
-const snsLinks = [
-  {
-    id: 'note',
-    name: 'note',
-    href: 'https://note.com/hamataishi_7109',
-    color: '#41C9B4',
-    icon: '✏️',
-  },
-  {
-    id: 'x',
-    name: 'X (Twitter)',
-    href: 'https://x.com/hamatai_7109',
-    color: '#1DA1F2',
-    icon: '𝕏',
-  },
-  {
-    id: 'instagram',
-    name: 'Instagram',
-    href: 'https://www.instagram.com/hamatai_7109',
-    color: '#E1306C',
-    icon: '📸',
-  },
-  {
-    id: 'facebook',
-    name: 'Facebook',
-    href: 'https://www.facebook.com/bigambitiooooon',
-    color: '#1877F2',
-    icon: '📘',
-  },
-  {
-    id: 'linkedin',
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/bigambitiooon/',
-    color: '#0A66C2',
-    icon: '💼',
-  },
-  {
-    id: 'github',
-    name: 'GitHub',
-    href: 'https://github.com/hamatai-dev',
-    color: '#6E40C9',
-    icon: '🐙',
-  },
-];
+const NEWS_SNS_ORDER = [
+  'note',
+  'x',
+  'instagram',
+  'facebook',
+  'linkedin',
+  'github',
+] as const;
+
+const SNS_VISUALS: Record<
+  (typeof NEWS_SNS_ORDER)[number],
+  { color: string; icon: string }
+> = {
+  note: { color: '#41C9B4', icon: '✏️' },
+  x: { color: '#1DA1F2', icon: '𝕏' },
+  instagram: { color: '#E1306C', icon: '📸' },
+  facebook: { color: '#1877F2', icon: '📘' },
+  linkedin: { color: '#0A66C2', icon: '💼' },
+  github: { color: '#6E40C9', icon: '🐙' },
+};
+
+const snsLinks = NEWS_SNS_ORDER.map((id) => {
+  const social = socialLinks.find((s) => s.id === id)!;
+  return {
+    id,
+    name: social.label,
+    href: social.href,
+    ...SNS_VISUALS[id],
+  };
+});
 
 // ── Article card ──────────────────────────────────────────────────────────────
 
@@ -130,11 +128,18 @@ export default async function NewsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'news' });
+  const tNav = await getTranslations({ locale, namespace: 'nav' });
 
   const { contents: articles } = await getArticles(9);
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: tNav('home'), url: SITE_URL },
+    { name: tNav('news'), url: `${SITE_URL}/news` },
+  ]);
+
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <JsonLd data={breadcrumbJsonLd} />
       {/* Header */}
       <SectionTitle
         subtitle={t('subtitle')}

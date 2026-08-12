@@ -1,5 +1,9 @@
 import { createClient } from 'microcms-js-sdk';
-import type { MicroCMSArticle } from '@/types/microcms';
+import type {
+  MicroCMSContentId,
+  MicroCMSDate,
+} from 'microcms-js-sdk';
+import type { MicroCMSArticle, MicroCMSArticleRaw } from '@/types/microcms';
 
 const getClient = () => {
   const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN;
@@ -12,6 +16,20 @@ const getClient = () => {
   return createClient({ serviceDomain, apiKey });
 };
 
+/** microCMS's image field id is `eyecatch`; normalize it to `thumbnail` for app-wide use. */
+function toArticle(
+  raw: MicroCMSArticleRaw & MicroCMSContentId & MicroCMSDate,
+): MicroCMSArticle {
+  const { eyecatch, tags, ...rest } = raw;
+  return {
+    ...rest,
+    thumbnail: eyecatch,
+    tags: tags?.map((tag) => tag.text),
+    publishedAt: raw.publishedAt ?? raw.createdAt,
+    revisedAt: raw.revisedAt ?? raw.updatedAt,
+  };
+}
+
 const EMPTY_RESPONSE = {
   contents: [] as MicroCMSArticle[],
   totalCount: 0,
@@ -23,10 +41,12 @@ export async function getArticles(limit = 9) {
   const client = getClient();
   if (!client) return EMPTY_RESPONSE;
 
-  return client.getList<MicroCMSArticle>({
+  const data = await client.getList<MicroCMSArticleRaw>({
     endpoint: 'blogs',
     queries: { limit, orders: '-publishedAt' },
   });
+
+  return { ...data, contents: data.contents.map(toArticle) };
 }
 
 export async function getArticle(
@@ -35,20 +55,44 @@ export async function getArticle(
   const client = getClient();
   if (!client) return null;
 
-  return client.getListDetail<MicroCMSArticle>({
+  const raw = await client.getListDetail<MicroCMSArticleRaw>({
     endpoint: 'blogs',
     contentId,
   });
+
+  return toArticle(raw);
 }
 
-export async function getArticlePaths() {
+const LIST_PAGE_SIZE = 100;
+
+export async function getAllArticleMeta(): Promise<
+  Pick<MicroCMSArticle, 'id' | 'updatedAt' | 'revisedAt'>[]
+> {
   const client = getClient();
   if (!client) return [];
 
-  const data = await client.getList<MicroCMSArticle>({
-    endpoint: 'blogs',
-    queries: { limit: 100, fields: 'id' },
-  });
+  const results: Pick<MicroCMSArticle, 'id' | 'updatedAt' | 'revisedAt'>[] =
+    [];
+  let offset = 0;
 
-  return data.contents.map((article) => article.id);
+  while (true) {
+    const data = await client.getList<MicroCMSArticle>({
+      endpoint: 'blogs',
+      queries: {
+        limit: LIST_PAGE_SIZE,
+        offset,
+        fields: 'id,updatedAt,revisedAt',
+      },
+    });
+    results.push(...data.contents);
+    offset += LIST_PAGE_SIZE;
+    if (offset >= data.totalCount) break;
+  }
+
+  return results;
+}
+
+export async function getArticlePaths() {
+  const articles = await getAllArticleMeta();
+  return articles.map((article) => article.id);
 }
