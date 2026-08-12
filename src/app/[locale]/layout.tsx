@@ -38,6 +38,9 @@ export async function generateMetadata({
       locale: locale === 'ja' ? 'ja_JP' : 'en_US',
       type: 'website',
     },
+    verification: {
+      google: 'CUritH43s4ExxfhrtRPFfBBx-pHp5ud_p62fo8t57FE',
+    },
   };
 }
 
