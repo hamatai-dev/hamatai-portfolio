@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { ArrowRightIcon, MapPinIcon, CalendarIcon } from '@heroicons/react/24/outline';
@@ -41,27 +41,33 @@ const skillGroups = [
 
 const career = [
   {
-    period: '2026年4月〜',
-    role: 'フリーランス Webエンジニア',
-    company: '個人事業主',
-    description:
-      '独立してフリーランスエンジニアとして活動を開始。Webアプリケーションやホームページ制作、技術顧問など幅広く対応中。現在は世界を旅しながらノマドとして活動しています。',
+    period: { ja: '2026年4月〜', en: 'Since Apr 2026' },
+    role: { ja: 'フリーランス Webエンジニア', en: 'Freelance Web Engineer' },
+    company: { ja: '個人事業主', en: 'Self-Employed' },
+    description: {
+      ja: '独立してフリーランスエンジニアとして活動を開始。Webアプリケーションやホームページ制作、技術顧問など幅広く対応中。現在は世界を旅しながらノマドとして活動しています。',
+      en: 'Went independent as a freelance engineer, working broadly across web application development, website creation, and technical consulting. Currently working as a digital nomad while traveling the world.',
+    },
     current: true,
   },
   {
-    period: '2024年4月〜2026年3月',
-    role: 'Webエンジニア',
-    company: 'アルサーガパートナーズ株式会社',
-    description:
-      '金融系Webアプリのバックエンド・インフラ構築およびAndroidアプリ開発に従事。アジャイル開発におけるスクラム、ウォーターフォールでのプロジェクト管理まで一貫して経験し、幅広い技術を習得しました。',
+    period: { ja: '2024年4月〜2026年3月', en: 'Apr 2024 – Mar 2026' },
+    role: { ja: 'Webエンジニア', en: 'Web Engineer' },
+    company: { ja: 'アルサーガパートナーズ株式会社', en: 'Arsaga Partners Inc.' },
+    description: {
+      ja: '金融系Webアプリのバックエンド・インフラ構築およびAndroidアプリ開発に従事。アジャイル開発におけるスクラム、ウォーターフォールでのプロジェクト管理まで一貫して経験し、幅広い技術を習得しました。',
+      en: 'Worked on backend and infrastructure development for a fintech web application, as well as Android app development. Gained end-to-end experience in both Scrum-based agile development and waterfall project management, building a broad technical skill set.',
+    },
     current: false,
   },
   {
-    period: '2022年11月〜2024年3月',
-    role: 'Webエンジニア',
-    company: '株式会社SEアシスト',
-    description:
-      '中小企業向けのWebデザインおよびWebアプリのフロントエンド開発を担当。UI/UXを意識した実装経験を積みました。',
+    period: { ja: '2022年11月〜2024年3月', en: 'Nov 2022 – Mar 2024' },
+    role: { ja: 'Webエンジニア', en: 'Web Engineer' },
+    company: { ja: '株式会社SEアシスト', en: 'SE Assist Co., Ltd.' },
+    description: {
+      ja: '中小企業向けのWebデザインおよびWebアプリのフロントエンド開発を担当。UI/UXを意識した実装経験を積みました。',
+      en: 'Handled web design and frontend development of web applications for small and medium-sized businesses, gaining hands-on experience with a strong focus on UI/UX.',
+    },
     current: false,
   },
 ];
@@ -71,6 +77,7 @@ const career = [
 function ProfileCard() {
   const t = useTranslations('about');
   const tc = useTranslations('common');
+  const locale = useLocale() as 'ja' | 'en';
 
   return (
     <div className="bg-surface-card rounded-2xl border border-white/5 p-8 sticky top-24">
@@ -101,7 +108,7 @@ function ProfileCard() {
         </div>
         <div className="flex items-center gap-2 text-secondary text-sm">
           <CalendarIcon className="h-4 w-4 text-muted shrink-0" />
-          2026年4月〜 独立
+          {career[0].period[locale]}
         </div>
       </div>
 
@@ -165,6 +172,7 @@ function SkillsSection() {
 
 function CareerSection() {
   const t = useTranslations('about');
+  const locale = useLocale() as 'ja' | 'en';
 
   return (
     <div className="mt-14">
@@ -175,7 +183,7 @@ function CareerSection() {
 
         <div className="space-y-8">
           {career.map((item) => (
-            <div key={item.period} className="relative pl-10">
+            <div key={item.period.en} className="relative pl-10">
               {/* Dot */}
               <div
                 className={`absolute left-0 top-1 w-7 h-7 rounded-full border-2 flex items-center justify-center ${
@@ -193,18 +201,18 @@ function CareerSection() {
               <div className="bg-surface-card rounded-2xl border border-white/5 p-5">
                 <div className="flex flex-wrap items-center gap-2 mb-1">
                   <span className="text-accent text-xs font-semibold">
-                    {item.period}
+                    {item.period[locale]}
                   </span>
                   {item.current && (
-                    <Badge variant="green">現在</Badge>
+                    <Badge variant="green">{t('current')}</Badge>
                   )}
                 </div>
                 <h3 className="text-primary font-semibold text-base mb-0.5">
-                  {item.role}
+                  {item.role[locale]}
                 </h3>
-                <p className="text-muted text-xs mb-2">{item.company}</p>
+                <p className="text-muted text-xs mb-2">{item.company[locale]}</p>
                 <p className="text-secondary text-sm leading-relaxed">
-                  {item.description}
+                  {item.description[locale]}
                 </p>
               </div>
             </div>
