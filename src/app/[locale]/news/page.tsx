@@ -23,43 +23,43 @@ export async function generateMetadata({
 
 const snsLinks = [
   {
+    id: 'note',
     name: 'note',
-    description: '技術記事・エッセイ',
     href: 'https://note.com/', // ← あなたのnote URLを設定してください
     color: '#41C9B4',
     icon: '✏️',
   },
   {
+    id: 'x',
     name: 'X (Twitter)',
-    description: '日々の気づき・開発ログ',
     href: 'https://x.com/hamatai_7109',
     color: '#1DA1F2',
     icon: '𝕏',
   },
   {
+    id: 'instagram',
     name: 'Instagram',
-    description: 'ライフスタイル・作業風景',
     href: 'https://instagram.com/', // ← あなたのInstagram URLを設定してください
     color: '#E1306C',
     icon: '📸',
   },
   {
+    id: 'facebook',
     name: 'Facebook',
-    description: 'ビジネス情報・お知らせ',
     href: 'https://facebook.com/', // ← あなたのFacebook URLを設定してください
     color: '#1877F2',
     icon: '📘',
   },
   {
+    id: 'linkedin',
     name: 'LinkedIn',
-    description: 'キャリア・職歴',
     href: 'https://www.linkedin.com/in/bigambitiooon/',
     color: '#0A66C2',
     icon: '💼',
   },
   {
+    id: 'github',
     name: 'GitHub',
-    description: 'ソースコード・OSS活動',
     href: 'https://github.com/hamatai-dev',
     color: '#6E40C9',
     icon: '🐙',
@@ -187,7 +187,7 @@ export default async function NewsPage({
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-primary text-sm font-semibold">{sns.name}</p>
-                <p className="text-muted text-xs truncate">{sns.description}</p>
+                <p className="text-muted text-xs truncate">{t(`sns.${sns.id}` as 'sns.note')}</p>
               </div>
               <ArrowTopRightOnSquareIcon className="h-4 w-4 text-muted group-hover:text-secondary transition-colors shrink-0" />
             </a>
