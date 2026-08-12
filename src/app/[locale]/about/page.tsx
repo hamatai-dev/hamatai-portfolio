@@ -21,19 +21,44 @@ export async function generateMetadata({
 const skillGroups = [
   {
     category: 'Frontend',
-    skills: ['React', 'Next.js', 'Vue.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS'],
+    skills: [
+      { name: 'React' },
+      { name: 'Next.js' },
+      { name: 'Vue.js' },
+      { name: 'TypeScript' },
+      { name: 'Tailwind CSS' },
+      { name: 'HTML/CSS' },
+    ],
   },
   {
     category: 'Backend',
-    skills: ['Node.js', 'Express', 'REST API', 'PostgreSQL', 'MySQL'],
+    skills: [
+      { name: 'Node.js' },
+      { name: 'Express' },
+      { name: 'REST API' },
+      { name: 'PostgreSQL' },
+      { name: 'MySQL' },
+    ],
   },
   {
     category: 'Mobile',
-    skills: ['React Native', 'Expo', 'Swift (基礎)', 'Kotlin (基礎)'],
+    skills: [
+      { name: 'React Native' },
+      { name: 'Expo' },
+      { name: 'Swift', basic: true },
+      { name: 'Kotlin', basic: true },
+    ],
   },
   {
     category: 'Tools & Others',
-    skills: ['Git', 'GitHub', 'Vercel', 'Figma', 'Notion', 'Docker (基礎)'],
+    skills: [
+      { name: 'Git' },
+      { name: 'GitHub' },
+      { name: 'Vercel' },
+      { name: 'Figma' },
+      { name: 'Notion' },
+      { name: 'Docker', basic: true },
+    ],
   },
 ];
 
@@ -158,8 +183,9 @@ function SkillsSection() {
             </h3>
             <div className="flex flex-wrap gap-2">
               {group.skills.map((skill) => (
-                <Badge key={skill} variant="gray">
-                  {skill}
+                <Badge key={skill.name} variant="gray">
+                  {skill.name}
+                  {skill.basic && ` (${t('basic')})`}
                 </Badge>
               ))}
             </div>
