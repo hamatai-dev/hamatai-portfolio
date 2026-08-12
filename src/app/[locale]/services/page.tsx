@@ -34,51 +34,6 @@ const serviceIcons: Record<string, React.ElementType> = {
   consulting: BriefcaseIcon,
 };
 
-const serviceFeatures: Record<string, string[]> = {
-  webapp: [
-    'フロントエンド・バックエンド両対応',
-    'API 設計・実装',
-    'DB 設計',
-    'CI/CD 構築サポート',
-    'パフォーマンス最適化',
-  ],
-  homepage: [
-    'LP・コーポレートサイト',
-    'レスポンシブデザイン対応',
-    'SEO 対策',
-    'CMS 連携',
-    'ページスピード最適化',
-  ],
-  notion: [
-    'データベース設計',
-    'ページテンプレート作成',
-    '社内 Wiki 構築',
-    'マニュアル整備サポート',
-    '運用レクチャー',
-  ],
-  mobile: [
-    'iOS / Android 対応',
-    'クロスプラットフォーム開発',
-    'UI/UX 設計',
-    'App Store / Play Store 申請サポート',
-    'プッシュ通知対応',
-  ],
-  frontend: [
-    'UI コンポーネント実装',
-    '既存コードのリファクタリング',
-    'パフォーマンス改善',
-    'アクセシビリティ対応',
-    'デザインシステム構築',
-  ],
-  consulting: [
-    '技術選定アドバイス',
-    'アーキテクチャ設計相談',
-    'コードレビュー',
-    '開発チーム立ち上げ支援',
-    '採用基準・面接サポート',
-  ],
-};
-
 function ServiceCard({
   service,
   t,
@@ -87,7 +42,7 @@ function ServiceCard({
   t: ReturnType<typeof useTranslations>;
 }) {
   const Icon = serviceIcons[service.id] ?? CodeBracketIcon;
-  const features = serviceFeatures[service.id] ?? [];
+  const features = t.raw(`${service.id as 'webapp'}.features`) as string[];
 
   return (
     <div className="group bg-surface-card rounded-2xl border border-white/5 p-7 hover:border-accent/20 transition-all duration-300 flex flex-col">
@@ -150,12 +105,8 @@ export default function ServicesPage() {
 
       {/* CTA */}
       <div className="mt-16 p-8 bg-surface-subtle rounded-2xl border border-white/5 text-center">
-        <h3 className="text-primary font-bold text-xl mb-2">
-          ご不明な点はお気軽にご相談ください
-        </h3>
-        <p className="text-secondary text-sm mb-6">
-          掲載サービス以外のご要望もお気軽にご相談いただけます。
-        </p>
+        <h3 className="text-primary font-bold text-xl mb-2">{t('ctaTitle')}</h3>
+        <p className="text-secondary text-sm mb-6">{t('ctaDescription')}</p>
         <Link
           href="/contact"
           className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-xl font-semibold hover:bg-accent-dark transition-colors"
