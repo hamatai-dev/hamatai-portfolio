@@ -303,16 +303,17 @@ function WorksSection() {
 function ContactCTASection() {
   const t = useTranslations('contact');
   const tc = useTranslations('common');
+  const th = useTranslations('hero');
 
   return (
     <section className="py-24 bg-surface-subtle">
       <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
         <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-semibold mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          受付中
+          {th('available')}
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-          お仕事のご依頼・<br className="sm:hidden" />ご相談はお気軽に
+          {t('ctaTitle')}
         </h2>
         <p className="text-secondary text-base leading-relaxed mb-8">
           {t('description')}
