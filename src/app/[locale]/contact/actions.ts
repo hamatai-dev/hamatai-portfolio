@@ -32,9 +32,7 @@ export async function sendContactEmail(data: unknown) {
 
   try {
     await resend.emails.send({
-      // 本番環境では自分のドメイン（例: noreply@yourdomain.com）を設定してください
-      // Resend でドメイン認証後に変更が必要です
-      from: process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev',
+      from: `hamatai.com お問い合わせ <${process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev'}>`,
       to: process.env.CONTACT_TO_EMAIL ?? 'thdev7109@gmail.com',
       replyTo: email,
       subject: `[お問い合わせ] ${type} — ${name}`,
