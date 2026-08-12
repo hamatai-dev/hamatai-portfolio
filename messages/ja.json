@@ -69,7 +69,9 @@
     "description": "これまでに開発したプロダクトや制作物の一部を紹介します。",
     "viewAll": "すべての実績を見る",
     "viewSite": "サイトを見る",
-    "viewGitHub": "GitHubを見る"
+    "viewGitHub": "GitHubを見る",
+    "categoryWebsite": "ホームページ",
+    "categoryWebapp": "Webアプリ"
   },
   "news": {
     "title": "News",

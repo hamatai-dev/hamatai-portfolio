@@ -69,7 +69,9 @@
     "description": "A selection of products and projects I have built.",
     "viewAll": "View All Works",
     "viewSite": "View Site",
-    "viewGitHub": "View GitHub"
+    "viewGitHub": "View GitHub",
+    "categoryWebsite": "Websites",
+    "categoryWebapp": "Web Apps"
   },
   "news": {
     "title": "News",

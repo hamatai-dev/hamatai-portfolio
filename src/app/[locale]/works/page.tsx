@@ -4,6 +4,12 @@ import Image from 'next/image';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
 import { works } from '@/data/work';
+import { WorkCategory } from '@/types/work';
+
+const CATEGORIES: { key: WorkCategory; labelKey: 'categoryWebsite' | 'categoryWebapp' }[] = [
+  { key: 'website', labelKey: 'categoryWebsite' },
+  { key: 'webapp', labelKey: 'categoryWebapp' },
+];
 
 export async function generateMetadata({
   params,
@@ -89,10 +95,22 @@ export default function WorksPage() {
         description={t('description')}
       />
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {works.map((work) => (
-          <WorkCard key={work.id} work={work} t={t} />
-        ))}
+      <div className="space-y-16">
+        {CATEGORIES.map(({ key, labelKey }) => {
+          const categoryWorks = works.filter((work) => work.category === key);
+          if (categoryWorks.length === 0) return null;
+
+          return (
+            <div key={key}>
+              <h2 className="text-xl font-bold text-primary mb-6">{t(labelKey)}</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {categoryWorks.map((work) => (
+                  <WorkCard key={work.id} work={work} t={t} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
