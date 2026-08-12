@@ -79,7 +79,7 @@ export function ContactForm({ locale }: Props) {
           placeholder={t('namePlaceholder')}
           className={inputClass}
         />
-        {errors.name && <p className={errorClass}>{t('name')}を入力してください</p>}
+        {errors.name && <p className={errorClass}>{t('errors.name')}</p>}
       </div>
 
       {/* Company */}
@@ -102,7 +102,7 @@ export function ContactForm({ locale }: Props) {
           placeholder={t('emailPlaceholder')}
           className={inputClass}
         />
-        {errors.email && <p className={errorClass}>有効なメールアドレスを入力してください</p>}
+        {errors.email && <p className={errorClass}>{t('errors.email')}</p>}
       </div>
 
       {/* Type */}
@@ -122,7 +122,7 @@ export function ContactForm({ locale }: Props) {
             </option>
           ))}
         </select>
-        {errors.type && <p className={errorClass}>{t('type')}を選択してください</p>}
+        {errors.type && <p className={errorClass}>{t('errors.type')}</p>}
       </div>
 
       {/* Message */}
@@ -134,7 +134,7 @@ export function ContactForm({ locale }: Props) {
           placeholder={t('messagePlaceholder')}
           className={`${inputClass} resize-none`}
         />
-        {errors.message && <p className={errorClass}>10文字以上入力してください</p>}
+        {errors.message && <p className={errorClass}>{t('errors.message')}</p>}
       </div>
 
       {/* Error */}

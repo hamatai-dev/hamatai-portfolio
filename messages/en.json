@@ -177,6 +177,12 @@
     "successTitle": "Message Sent",
     "successMessage": "Thank you for reaching out! I will get back to you within 1–2 business days.",
     "errorMessage": "Failed to send. Please try again later or contact me via social media.",
+    "errors": {
+      "name": "Please enter your name",
+      "email": "Please enter a valid email address",
+      "type": "Please select an inquiry type",
+      "message": "Please enter at least 10 characters"
+    },
     "types": {
       "webapp": "Web App Development",
       "homepage": "Website Creation",
