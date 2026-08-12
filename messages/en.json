@@ -105,7 +105,24 @@
       ]
     },
     "ctaTitle": "Have questions? Feel free to reach out.",
-    "ctaDescription": "Have a request that's not listed here? I'm happy to discuss it with you."
+    "ctaDescription": "Have a request that's not listed here? I'm happy to discuss it with you.",
+    "viewPlanDetails": "View detailed plans & pricing",
+    "priceOnRequest": "Pricing varies by scope — feel free to reach out for a quote",
+    "homepagePlan": {
+      "title": "Website Creation — Detailed Plans",
+      "intro": "With 4 years of hands-on experience at a development agency, I work closely with you from requirements gathering through design, coding, and launch, then continue to handle maintenance after release. Performance optimization and SEO/AEO measures are included by default, with multilingual support and logo design available as options.",
+      "directNote": "The prices below are special rates for requests made directly through this site — lower than what you'd pay through an external platform.",
+      "productionHeading": "Production Plans (Initial Cost + Monthly Maintenance)",
+      "recommended": "Recommended",
+      "initialCostLabel": "Initial cost (excl. tax)",
+      "monthlyLabel": "/mo (maintenance)",
+      "optionsHeading": "Options",
+      "flowHeading": "Process (Est. turnaround: ~1 month)",
+      "maintenanceOnlyTitle": "Maintenance-only requests are also welcome",
+      "maintenanceOnlyDesc": "I also handle maintenance and operations for websites that are already live (same pricing as the monthly maintenance above). Sites built by other developers may also be supported after an initial consultation. A minimum commitment of 3 months applies, and you can cancel anytime after that.",
+      "maintenanceOnlyNote": "Minor edits typically mean anything completable in about 30 minutes, such as text or image swaps and updates to existing page content. New pages or design changes are quoted separately.",
+      "responseTimeNote": "* As I work while traveling the world, I'm mainly available during Japan-time evenings and nights. I check messages daily and reply within 24 hours."
+    }
   },
   "works": {
     "title": "Works",
