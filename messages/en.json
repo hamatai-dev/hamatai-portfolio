@@ -111,7 +111,7 @@
     "homepagePlan": {
       "title": "Website Creation — Detailed Plans",
       "intro": "With 4 years of hands-on experience at a development agency, I work closely with you from requirements gathering through design, coding, and launch, then continue to handle maintenance after release. Performance optimization and SEO/AEO measures are included by default, with multilingual support and logo design available as options.",
-      "directNote": "The prices below are special rates for requests made directly through this site — lower than what you'd pay through an external platform.",
+      "flexibleNote": "The prices shown are just a reference point. We'll flexibly adjust the plan and pricing to fit your specific needs and budget, so feel free to reach out to discuss.",
       "productionHeading": "Production Plans (Initial Cost + Monthly Maintenance)",
       "recommended": "Recommended",
       "initialCostLabel": "Initial cost (excl. tax)",
