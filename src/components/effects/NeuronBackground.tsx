@@ -68,6 +68,13 @@ export function NeuronBackground() {
       mouse.y = -9999;
     }
 
+    function onPointerUp(e: PointerEvent) {
+      if (e.pointerType === 'touch') {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      }
+    }
+
     function update() {
       for (const p of particles) {
         p.x += p.vx;
@@ -134,6 +141,8 @@ export function NeuronBackground() {
     window.addEventListener('resize', resize);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('pointerleave', onPointerLeave);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
 
     if (!prefersReducedMotion) {
       animationId = requestAnimationFrame(frame);
@@ -143,6 +152,8 @@ export function NeuronBackground() {
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerleave', onPointerLeave);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
       if (animationId) cancelAnimationFrame(animationId);
     };
   }, []);
@@ -150,7 +161,7 @@ export function NeuronBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 h-full w-full pointer-events-none"
+      className="absolute inset-0 h-full w-full touch-pan-y"
       aria-hidden="true"
     />
   );
