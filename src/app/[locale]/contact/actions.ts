@@ -2,6 +2,7 @@
 
 import { Resend } from 'resend';
 import { z } from 'zod';
+import { headers } from 'next/headers';
 
 const contactSchema = z.object({
   name: z.string().min(1, 'お名前を入力してください'),
@@ -13,11 +14,56 @@ const contactSchema = z.object({
 
 export type ContactFormData = z.infer<typeof contactSchema>;
 
-export async function sendContactEmail(data: unknown) {
+async function verifyTurnstileToken(token: string): Promise<boolean> {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  if (!secretKey) {
+    console.error('TURNSTILE_SECRET_KEY is not set');
+    return false;
+  }
+
+  const params = new URLSearchParams();
+  params.append('secret', secretKey);
+  params.append('response', token);
+
+  const hdrs = await headers();
+  const remoteIp = hdrs.get('cf-connecting-ip');
+  if (remoteIp) {
+    params.append('remoteip', remoteIp);
+  }
+
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params,
+    });
+    const outcome = (await res.json()) as { success: boolean; 'error-codes'?: string[] };
+
+    if (!outcome.success) {
+      console.error('Turnstile verification failed:', outcome['error-codes']);
+    }
+
+    return outcome.success;
+  } catch (err) {
+    console.error('Turnstile verification error:', err);
+    return false;
+  }
+}
+
+export async function sendContactEmail(data: unknown, turnstileToken: unknown) {
   const parsed = contactSchema.safeParse(data);
 
   if (!parsed.success) {
     return { success: false, error: 'Invalid form data' };
+  }
+
+  if (typeof turnstileToken !== 'string' || !turnstileToken) {
+    return { success: false, error: 'turnstile' };
+  }
+
+  const isHuman = await verifyTurnstileToken(turnstileToken);
+  if (!isHuman) {
+    return { success: false, error: 'turnstile' };
   }
 
   const { name, company, email, type, message } = parsed.data;

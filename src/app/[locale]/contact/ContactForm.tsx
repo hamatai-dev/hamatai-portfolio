@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useTranslations } from 'next-intl';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { sendContactEmail } from './actions';
+import { TurnstileWidget, type TurnstileWidgetHandle } from './TurnstileWidget';
 
 const schema = z.object({
   name: z.string().min(1),
@@ -35,6 +36,9 @@ interface Props {
 export function ContactForm({ locale }: Props) {
   const t = useTranslations('contact');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isTurnstileError, setIsTurnstileError] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null);
 
   const {
     register,
@@ -44,12 +48,21 @@ export function ContactForm({ locale }: Props) {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormData) => {
-    const result = await sendContactEmail(data);
+    if (!turnstileToken) {
+      setStatus('error');
+      setIsTurnstileError(true);
+      return;
+    }
+
+    const result = await sendContactEmail(data, turnstileToken);
     if (result.success) {
       setStatus('success');
       reset();
     } else {
       setStatus('error');
+      setIsTurnstileError(result.error === 'turnstile');
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
     }
   };
 
@@ -137,11 +150,22 @@ export function ContactForm({ locale }: Props) {
         {errors.message && <p className={errorClass}>{t('errors.message')}</p>}
       </div>
 
+      {/* Turnstile */}
+      <TurnstileWidget
+        ref={turnstileRef}
+        locale={locale}
+        onVerify={setTurnstileToken}
+        onExpire={() => setTurnstileToken(null)}
+        onError={() => setTurnstileToken(null)}
+      />
+
       {/* Error */}
       {status === 'error' && (
         <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
           <ExclamationCircleIcon className="h-5 w-5 text-red-400 shrink-0" />
-          <p className="text-red-400 text-sm">{t('errorMessage')}</p>
+          <p className="text-red-400 text-sm">
+            {isTurnstileError ? t('errors.turnstile') : t('errorMessage')}
+          </p>
         </div>
       )}
 
