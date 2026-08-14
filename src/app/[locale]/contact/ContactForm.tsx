@@ -23,7 +23,7 @@ const typeIds = [
   'homepage',
   'notion',
   'mobile',
-  'frontend',
+  'rebuild',
   'consulting',
   'other',
 ] as const;

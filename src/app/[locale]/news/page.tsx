@@ -13,6 +13,7 @@ import { getLocalizedAlternates } from '@/lib/seo';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
 import { SITE_URL, socialLinks } from '@/config/site';
+import { socialIconComponents } from '@/components/icons/SocialIcons';
 
 export async function generateMetadata({
   params,
@@ -42,16 +43,13 @@ const NEWS_SNS_ORDER = [
   'github',
 ] as const;
 
-const SNS_VISUALS: Record<
-  (typeof NEWS_SNS_ORDER)[number],
-  { color: string; icon: string }
-> = {
-  note: { color: '#41C9B4', icon: '✏️' },
-  x: { color: '#1DA1F2', icon: '𝕏' },
-  instagram: { color: '#E1306C', icon: '📸' },
-  facebook: { color: '#1877F2', icon: '📘' },
-  linkedin: { color: '#0A66C2', icon: '💼' },
-  github: { color: '#6E40C9', icon: '🐙' },
+const SNS_VISUALS: Record<(typeof NEWS_SNS_ORDER)[number], { color: string }> = {
+  note: { color: '#41C9B4' },
+  x: { color: '#1DA1F2' },
+  instagram: { color: '#E1306C' },
+  facebook: { color: '#1877F2' },
+  linkedin: { color: '#0A66C2' },
+  github: { color: '#6E40C9' },
 };
 
 const snsLinks = NEWS_SNS_ORDER.map((id) => {
@@ -60,6 +58,7 @@ const snsLinks = NEWS_SNS_ORDER.map((id) => {
     id,
     name: social.label,
     href: social.href,
+    Icon: socialIconComponents[id],
     ...SNS_VISUALS[id],
   };
 });
@@ -185,10 +184,10 @@ export default async function NewsPage({
               className="group flex items-center gap-4 p-4 bg-surface-card rounded-xl border border-white/5 hover:border-white/15 transition-all duration-200 hover:bg-surface-raised"
             >
               <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110"
-                style={{ backgroundColor: `${sns.color}20`, border: `1px solid ${sns.color}30` }}
+                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
+                style={{ backgroundColor: `${sns.color}20`, border: `1px solid ${sns.color}30`, color: sns.color }}
               >
-                {sns.icon}
+                <sns.Icon className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-primary text-sm font-semibold">{sns.name}</p>

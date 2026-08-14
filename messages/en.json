@@ -23,7 +23,7 @@
   "hero": {
     "available": "Available for Work",
     "role": "Freelance Web Engineer",
-    "description": "From web applications to landing pages, Notion Wiki, and mobile apps — I cover it all.",
+    "description": "From web applications to landing pages, Notion Wiki, and mobile apps — I cover it all. I also help turn vibe-coded apps into sustainable, extensible products.",
     "ctaPrimary": "Get in Touch",
     "ctaSecondary": "View Works",
     "statLabel1": "Independent",
@@ -82,15 +82,15 @@
         "Push notification support"
       ]
     },
-    "frontend": {
-      "title": "Frontend Development",
-      "description": "UI implementation and code refactoring. Modern tech stack for high-quality UI/UX.",
+    "rebuild": {
+      "title": "Vibe-Coded App Refinement",
+      "description": "Turn apps built quickly with AI (vibe coding) into sustainable, extensible products. We support everything from code quality improvements to test setup and architecture redesign.",
       "features": [
-        "UI component implementation",
-        "Refactoring existing code",
-        "Performance improvements",
-        "Accessibility support",
-        "Design system development"
+        "Code review & quality improvement",
+        "Test & CI/CD setup",
+        "Architecture redesign",
+        "Technical debt reduction",
+        "Production-ready infrastructure"
       ]
     },
     "consulting": {
@@ -157,7 +157,7 @@
   "about": {
     "title": "About",
     "subtitle": "About Me",
-    "bio": "I went independent in April 2026 and have been working as a freelance web engineer. My strength is handling everything end-to-end — from requirements and design to implementation and release — across both frontend and backend.",
+    "bio": "I went independent in April 2026 and have been working as a freelance web engineer. My strength is handling everything end-to-end — from requirements and design to implementation and release — across both frontend and backend. I also help turn vibe-coded apps into sustainable, extensible products.",
     "skills": "Skills & Technologies",
     "basic": "basic",
     "career": "Career",
@@ -206,7 +206,7 @@
       "homepage": "Website Creation",
       "notion": "Notion Wiki Setup",
       "mobile": "Mobile App Development",
-      "frontend": "Frontend Development",
+      "rebuild": "Vibe-Coded App Refinement",
       "consulting": "Tech Consulting",
       "other": "Other"
     }

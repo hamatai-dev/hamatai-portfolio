@@ -9,13 +9,13 @@ export const services: Service[] = [
   {
     id: 'webapp',
     icon: '🌐',
-    technologies: ['Next.js', 'React', 'TypeScript', 'Node.js'],
+    technologies: ['Next.js', 'Spring Boot', 'Cloudflare', 'AWS'],
     featured: true,
   },
   {
     id: 'homepage',
     icon: '🖥️',
-    technologies: ['Next.js', 'Tailwind CSS', 'microCMS', 'Vercel'],
+    technologies: ['Next.js', 'microCMS', 'Cloudflare'],
     featured: true,
   },
   {
@@ -31,9 +31,9 @@ export const services: Service[] = [
     featured: false,
   },
   {
-    id: 'frontend',
-    icon: '⚡',
-    technologies: ['React', 'Vue.js', 'TypeScript', 'Tailwind CSS'],
+    id: 'rebuild',
+    icon: '🛠️',
+    technologies: [],
     featured: false,
   },
   {

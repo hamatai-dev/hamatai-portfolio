@@ -7,6 +7,8 @@ import { ArrowRightIcon, MapPinIcon, CalendarIcon } from '@heroicons/react/24/ou
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
 import { getLocalizedAlternates } from '@/lib/seo';
+import { socialLinks } from '@/config/site';
+import { socialIconComponents } from '@/components/icons/SocialIcons';
 
 export async function generateMetadata({
   params,
@@ -22,6 +24,32 @@ export async function generateMetadata({
     alternates: getLocalizedAlternates('/about', locale as Locale),
   };
 }
+
+// ── Social ────────────────────────────────────────────────────────────────────
+// href/labelは src/config/site.ts の socialLinks を単一の情報源とし、
+// 見た目(色・アイコン)のみこのページ固有で保持する。
+
+const PROFILE_SNS_ORDER = ['github', 'x', 'note', 'instagram', 'facebook', 'linkedin'] as const;
+
+const PROFILE_SNS_VISUALS: Record<(typeof PROFILE_SNS_ORDER)[number], { color: string }> = {
+  github: { color: '#6E40C9' },
+  x: { color: '#1DA1F2' },
+  note: { color: '#41C9B4' },
+  instagram: { color: '#E1306C' },
+  facebook: { color: '#1877F2' },
+  linkedin: { color: '#0A66C2' },
+};
+
+const profileSnsLinks = PROFILE_SNS_ORDER.map((id) => {
+  const social = socialLinks.find((s) => s.id === id)!;
+  return {
+    id,
+    name: social.label,
+    href: social.href,
+    Icon: socialIconComponents[id],
+    ...PROFILE_SNS_VISUALS[id],
+  };
+});
 
 // ── Skills ────────────────────────────────────────────────────────────────────
 
@@ -42,6 +70,7 @@ const skillGroups = [
     skills: [
       { name: 'Node.js' },
       { name: 'Express' },
+      { name: 'Spring Boot' },
       { name: 'REST API' },
       { name: 'PostgreSQL' },
       { name: 'MySQL' },
@@ -64,7 +93,7 @@ const skillGroups = [
       { name: 'Vercel' },
       { name: 'Figma' },
       { name: 'Notion' },
-      { name: 'Docker', basic: true },
+      { name: 'Docker' },
     ],
   },
 ];
@@ -102,6 +131,16 @@ const career = [
     },
     current: false,
   },
+  {
+    period: { ja: '2022年4月〜2022年10月', en: 'Apr 2022 – Oct 2022' },
+    role: { ja: 'コンサルタント', en: 'Consultant' },
+    company: { ja: '株式会社公文教育研究会', en: 'Kumon Institute of Education Co., Ltd.' },
+    description: {
+      ja: '教室の新規開設や既存教室の運営をサポートするコンサルタントとして勤務。',
+      en: 'Worked as a consultant supporting the launch of new classrooms and the operation of existing ones.',
+    },
+    current: false,
+  },
 ];
 
 // ── Components ────────────────────────────────────────────────────────────────
@@ -113,14 +152,32 @@ function ProfileCard() {
 
   return (
     <div className="bg-surface-card rounded-2xl border border-white/5 p-8 sticky top-24">
-      {/* Photo */}
-      <div className="relative w-24 h-24 rounded-2xl overflow-hidden mb-5 border border-white/10">
-        <Image
-          src="/images/profile.jpg"
-          alt="Taishi Hamano"
-          fill
-          className="object-cover object-top"
-        />
+      {/* Photo + Social */}
+      <div className="flex items-center gap-3 mb-5">
+        <div className="relative w-24 h-24 rounded-2xl overflow-hidden border border-white/10 shrink-0">
+          <Image
+            src="/images/profile.jpg"
+            alt="Taishi Hamano"
+            fill
+            className="object-cover object-top"
+          />
+        </div>
+        <div className="flex flex-wrap gap-2 content-start">
+          {profileSnsLinks.map((sns) => (
+            <a
+              key={sns.id}
+              href={sns.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={sns.name}
+              title={sns.name}
+              className="flex items-center justify-center w-8 h-8 rounded-lg transition-transform hover:scale-110"
+              style={{ backgroundColor: `${sns.color}20`, border: `1px solid ${sns.color}30`, color: sns.color }}
+            >
+              <sns.Icon className="w-4 h-4" />
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* Name */}
