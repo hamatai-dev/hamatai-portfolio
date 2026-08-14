@@ -36,7 +36,7 @@
   "services": {
     "title": "Services",
     "subtitle": "提供サービス",
-    "description": "お客様のニーズに合わせた幅広いサービスを提供しています。",
+    "description": "お客様のニーズに合わせた幅広いサービスを提供しています。ご予算にできるだけ寄り添いながら要件を定義し、開発を進めます。",
     "viewAll": "すべてのサービスを見る",
     "webapp": {
       "title": "Webアプリ開発",
@@ -212,7 +212,7 @@
     }
   },
   "footer": {
-    "description": "フリーランスWebエンジニアとして、Webアプリ開発からモバイルまで幅広く対応します。",
+    "description": "フリーランスWebエンジニアとして、要件定義から設計・実装・リリースまで一貫して対応。Webアプリ開発・ホームページ制作・モバイルアプリ開発に加え、バイブコーディングで作ったアプリの持続可能化もサポートします。",
     "links": "リンク",
     "social": "SNS",
     "copyright": "© {year} Taishi Hamano. All rights reserved."

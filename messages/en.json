@@ -36,7 +36,7 @@
   "services": {
     "title": "Services",
     "subtitle": "What I Do",
-    "description": "I offer a wide range of services tailored to your needs.",
+    "description": "I offer a wide range of services tailored to your needs, defining requirements and developing with your budget in mind wherever possible.",
     "viewAll": "View All Services",
     "webapp": {
       "title": "Web App Development",
@@ -212,7 +212,7 @@
     }
   },
   "footer": {
-    "description": "Freelance web engineer covering web apps, websites, Notion, and mobile.",
+    "description": "Freelance web engineer handling everything end-to-end, from requirements to design, implementation, and release. I cover web apps, websites, and mobile apps, and also help make vibe-coded apps sustainable.",
     "links": "Links",
     "social": "Social",
     "copyright": "© {year} Taishi Hamano. All rights reserved."

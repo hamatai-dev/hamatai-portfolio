@@ -80,9 +80,6 @@ export default function Footer() {
           <p className="text-muted text-xs">
             {t('copyright', { year })}
           </p>
-          <p className="text-muted text-xs">
-            Built with Next.js & Tailwind CSS
-          </p>
         </div>
       </div>
     </footer>
