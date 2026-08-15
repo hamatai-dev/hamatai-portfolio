@@ -23,4 +23,9 @@ export const socialLinks = [
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/bigambitiooon/',
   },
+  {
+    id: 'coconala',
+    label: 'ココナラ',
+    href: 'https://coconala.com/users/6220559',
+  },
 ] as const;

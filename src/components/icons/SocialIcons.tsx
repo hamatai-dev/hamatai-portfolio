@@ -1,6 +1,8 @@
 // 各SNSの公式アイコン(ブランドマーク)。
 // パスデータは Simple Icons (CC0) 由来。currentColor で塗りつぶすため、
 // 呼び出し側で text color を指定して表示色を制御する。
+// ココナラは Simple Icons に公式ブランドアイコンが存在しないため、
+// 汎用アイコン(店舗マーク)で代用する。
 
 interface IconProps {
   className?: string;
@@ -76,6 +78,15 @@ export function LinkedinIcon({ className }: IconProps) {
   );
 }
 
+export function CoconalaIcon({ className }: IconProps) {
+  return (
+    <BrandIcon
+      className={className}
+      path="M12 2 2 7v10l10 5 10-5V7L12 2Zm0 2.236L18.764 8 12 11.764 5.236 8 12 4.236ZM4 9.618l7 3.882v6.264l-7-3.5V9.618Zm9 10.146v-6.264l7-3.882v6.646l-7 3.5Z"
+    />
+  );
+}
+
 export const socialIconComponents = {
   github: GithubIcon,
   x: XIcon,
@@ -83,4 +94,5 @@ export const socialIconComponents = {
   instagram: InstagramIcon,
   facebook: FacebookIcon,
   linkedin: LinkedinIcon,
+  coconala: CoconalaIcon,
 } as const;
