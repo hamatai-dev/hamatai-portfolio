@@ -4,18 +4,11 @@ import { useTranslations, useLocale } from 'next-intl';
 import { getLocalizedAlternates } from '@/lib/seo';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import {
-  ArrowRightIcon,
-  CodeBracketIcon,
-  GlobeAltIcon,
-  DevicePhoneMobileIcon,
-  BriefcaseIcon,
-  DocumentTextIcon,
-  WrenchScrewdriverIcon,
-} from '@heroicons/react/24/outline';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
 import { NeuronBackground } from '@/components/effects/NeuronBackground';
+import { ServicesPainSection } from '@/components/home/ServicesPainSection';
 import { works } from '@/data/work';
 
 export async function generateMetadata({
@@ -135,70 +128,6 @@ function HeroSection() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── Services Preview ──────────────────────────────────────────────────────────
-
-const serviceIcons: Record<string, React.ElementType> = {
-  webapp: CodeBracketIcon,
-  homepage: GlobeAltIcon,
-  notion: DocumentTextIcon,
-  mobile: DevicePhoneMobileIcon,
-  rebuild: WrenchScrewdriverIcon,
-  consulting: BriefcaseIcon,
-};
-
-const featuredServices = ['webapp', 'homepage', 'consulting'];
-
-function ServicesSection() {
-  const t = useTranslations('services');
-  const tc = useTranslations('common');
-
-  return (
-    <section className="py-24 bg-surface-subtle">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionTitle
-          subtitle={t('subtitle')}
-          title={t('title')}
-          description={t('description')}
-        />
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {featuredServices.map((id) => {
-            const Icon = serviceIcons[id] ?? CodeBracketIcon;
-            return (
-              <div
-                key={id}
-                className="group bg-surface-card p-6 rounded-2xl border border-white/5 hover:border-accent/20 transition-all duration-300 hover:bg-surface-raised"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
-                    <Icon className="h-5 w-5 text-accent" />
-                  </div>
-                  <h3 className="text-primary font-semibold text-lg">
-                    {t(`${id}.title`)}
-                  </h3>
-                </div>
-                <p className="text-secondary text-sm leading-relaxed">
-                  {t(`${id}.description`)}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-accent hover:text-accent-light text-sm font-semibold transition-colors"
-          >
-            {t('viewAll')}
-            <ArrowRightIcon className="h-4 w-4" />
-          </Link>
         </div>
       </div>
     </section>
@@ -347,7 +276,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ServicesSection />
+      <ServicesPainSection />
       <WorksSection />
       <ContactCTASection />
     </>

@@ -36,12 +36,13 @@
   },
   "services": {
     "title": "Services",
-    "subtitle": "What I Do",
+    "subtitle": "Business",
     "description": "I offer a wide range of services tailored to your needs, defining requirements and developing with your budget in mind wherever possible.",
     "viewAll": "View All Services",
     "webapp": {
       "title": "Web App Development",
       "description": "Full-stack development with React / Next.js. From requirements to design, implementation, and release.",
+      "pain": "You've got the idea, but no time or engineers to actually build it…",
       "features": [
         "Frontend & backend development",
         "API design & implementation",
@@ -53,6 +54,7 @@
     "homepage": {
       "title": "Website Creation",
       "description": "LP and corporate website creation. End-to-end from design to implementation with SEO optimization.",
+      "pain": "That site you threw together a while back? It's honestly been untouched for years…",
       "features": [
         "Landing pages & corporate sites",
         "Responsive design",
@@ -64,6 +66,7 @@
     "notion": {
       "title": "Notion Wiki Setup",
       "description": "Streamline information management with Notion. Database design, page structure, and team wikis.",
+      "pain": "Docs and info are scattered everywhere — just finding things takes forever…",
       "features": [
         "Database design",
         "Page template creation",
@@ -75,6 +78,7 @@
     "mobile": {
       "title": "Mobile App Development",
       "description": "iOS / Android app development. Cross-platform development for cost-effective, high-quality apps.",
+      "pain": "You want to go mobile, but have no idea where to even start…",
       "features": [
         "iOS / Android support",
         "Cross-platform development",
@@ -86,6 +90,7 @@
     "rebuild": {
       "title": "Vibe-Coded App Refinement",
       "description": "Turn apps built quickly with AI (vibe coding) into sustainable, extensible products. We support everything from code quality improvements to test setup and architecture redesign.",
+      "pain": "You vibe-coded it fast, but you're not sure how to grow it from here…",
       "features": [
         "Code review & quality improvement",
         "Test & CI/CD setup",
@@ -97,6 +102,7 @@
     "consulting": {
       "title": "Tech Consulting",
       "description": "Technology selection and architecture consulting. Supporting technical decisions for development teams.",
+      "pain": "There's no one around you can casually ask about technical decisions…",
       "features": [
         "Technology selection advice",
         "Architecture design consulting",
@@ -104,6 +110,10 @@
         "Development team setup support",
         "Hiring criteria & interview support"
       ]
+    },
+    "painSection": {
+      "heading1": "Do any of these",
+      "heading2": "sound familiar?"
     },
     "ctaTitle": "Have questions? Feel free to reach out.",
     "ctaDescription": "Have a request that's not listed here? I'm happy to discuss it with you.",
