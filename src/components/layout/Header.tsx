@@ -39,13 +39,22 @@ export default function Header() {
     >
       <nav className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-primary font-bold text-lg tracking-tight hover:text-accent transition-colors"
-        >
-          hamatai
-          <span className="text-accent">.</span>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/"
+            className="text-primary font-bold text-lg tracking-tight hover:text-accent transition-colors shrink-0"
+          >
+            hamatai
+            <span className="text-accent">.</span>
+          </Link>
+
+          {/* Available badge (speech bubble) */}
+          <div className="hidden md:flex relative items-center gap-1.5 pl-2.5 pr-3 py-1.5 rounded-full border border-accent/20 bg-accent/10 text-accent text-xs font-semibold whitespace-nowrap">
+            <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-accent/10 border-l border-b border-accent/20" />
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0" />
+            {t('availableBadge')}
+          </div>
+        </div>
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex items-center gap-8">

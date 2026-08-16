@@ -33,6 +33,36 @@ export async function generateMetadata({
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 
+function FlipWord({
+  text,
+  flipped,
+  gradient,
+  delayMs = 0,
+}: {
+  text: string;
+  flipped: string;
+  gradient?: boolean;
+  delayMs?: number;
+}) {
+  return (
+    <span className="flip-word">
+      <span
+        className="flip-word-inner"
+        style={{ transitionDelay: `${delayMs}ms` }}
+      >
+        <span className={`flip-word-face ${gradient ? 'gradient-text' : ''}`}>
+          {text}
+        </span>
+        <span
+          className={`flip-word-face flip-word-face--back ${gradient ? 'gradient-text' : ''}`}
+        >
+          {flipped}
+        </span>
+      </span>
+    </span>
+  );
+}
+
 function HeroSection() {
   const t = useTranslations('hero');
   const tc = useTranslations('common');
@@ -62,9 +92,8 @@ function HeroSection() {
 
           {/* Name */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight mb-6">
-            Taishi
-            <br />
-            <span className="gradient-text">Hamano</span>
+            <FlipWord text="Taishi" flipped="大志" />{' '}
+            <FlipWord text="Hamano" flipped="濵野" gradient delayMs={80} />
           </h1>
 
           {/* Description */}
