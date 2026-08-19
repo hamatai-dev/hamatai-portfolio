@@ -42,6 +42,7 @@ const NEWS_SNS_ORDER = [
   'linkedin',
   'github',
   'coconala',
+  'upwork',
 ] as const;
 
 const SNS_VISUALS: Record<(typeof NEWS_SNS_ORDER)[number], { color: string }> = {
@@ -52,6 +53,7 @@ const SNS_VISUALS: Record<(typeof NEWS_SNS_ORDER)[number], { color: string }> = 
   linkedin: { color: '#0A66C2' },
   github: { color: '#6E40C9' },
   coconala: { color: '#FC6674' },
+  upwork: { color: '#14A800' },
 };
 
 const snsLinks = NEWS_SNS_ORDER.map((id) => {

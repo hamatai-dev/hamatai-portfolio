@@ -28,4 +28,9 @@ export const socialLinks = [
     label: 'ココナラ',
     href: 'https://coconala.com/users/6220559',
   },
+  {
+    id: 'upwork',
+    label: 'Upwork',
+    href: 'https://www.upwork.com/freelancers/~0110e79be3caa21974?mp_source=share',
+  },
 ] as const;
