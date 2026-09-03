@@ -38,4 +38,24 @@ export const socialLinks = [
     label: 'Upwork',
     href: 'https://www.upwork.com/freelancers/~0110e79be3caa21974?mp_source=share',
   },
+  {
+    id: 'standfm',
+    label: 'stand.fm',
+    href: 'https://stand.fm/channels/6a9870fb0bbc2a81f5777ad4',
+  },
+  {
+    id: 'spotify',
+    label: 'Spotify',
+    href: 'https://open.spotify.com/show/3islsHEiRoi1FL0hwNloDX?si=a980bf6ea41a4b3c',
+  },
+  {
+    id: 'applepodcast',
+    label: 'Podcast',
+    href: 'https://podcasts.apple.com/jp/podcast/life-shift-%E6%97%85%E3%81%99%E3%82%8B%E3%83%8E%E3%83%9E%E3%83%89%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AE%E6%97%A5%E5%B8%B8/id6808319808',
+  },
+  {
+    id: 'substack',
+    label: 'Substack',
+    href: 'https://substack.com/@hamatai',
+  },
 ] as const;

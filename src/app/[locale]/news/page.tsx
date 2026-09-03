@@ -44,6 +44,10 @@ const NEWS_SNS_ORDER = [
   'github',
   'coconala',
   'upwork',
+  'standfm',
+  'spotify',
+  'applepodcast',
+  'substack',
 ] as const;
 
 const SNS_VISUALS: Record<(typeof NEWS_SNS_ORDER)[number], { color: string }> = {
@@ -53,6 +57,10 @@ const SNS_VISUALS: Record<(typeof NEWS_SNS_ORDER)[number], { color: string }> = 
   instagram: { color: '#E1306C' },
   facebook: { color: '#1877F2' },
   linkedin: { color: '#0A66C2' },
+  standfm: { color: '#4D77FF' },
+  spotify: { color: '#1DB954' },
+  applepodcast: { color: '#A855F7' },
+  substack: { color: '#FF6719' },
   github: { color: '#6E40C9' },
   coconala: { color: '#FC6674' },
   upwork: { color: '#14A800' },
