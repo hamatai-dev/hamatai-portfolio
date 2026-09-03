@@ -155,15 +155,7 @@
     "viewAll": "View All Articles",
     "noArticles": "No articles yet. Please check back soon.",
     "backToList": "Back to Articles",
-    "publishedAt": "Published",
-    "sns": {
-      "note": "Tech articles & essays",
-      "x": "Daily thoughts & dev log",
-      "instagram": "Lifestyle & work snapshots",
-      "facebook": "Business updates & news",
-      "linkedin": "Career history",
-      "github": "Source code & OSS activity"
-    }
+    "publishedAt": "Published"
   },
   "about": {
     "title": "About",

@@ -43,7 +43,6 @@ const NEWS_SNS_ORDER = [
   'linkedin',
   'github',
   'coconala',
-  'upwork',
   'standfm',
   'spotify',
   'applepodcast',
@@ -63,7 +62,6 @@ const SNS_VISUALS: Record<(typeof NEWS_SNS_ORDER)[number], { color: string }> = 
   substack: { color: '#FF6719' },
   github: { color: '#6E40C9' },
   coconala: { color: '#FC6674' },
-  upwork: { color: '#14A800' },
 };
 
 const snsLinks = NEWS_SNS_ORDER.map((id) => {
@@ -204,8 +202,7 @@ export default async function NewsPage({
                 <sns.Icon className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-primary text-sm font-semibold">{sns.name}</p>
-                <p className="text-muted text-xs truncate">{t(`sns.${sns.id}` as 'sns.note')}</p>
+                <p className="text-primary text-sm font-semibold truncate">{sns.name}</p>
               </div>
               <ArrowTopRightOnSquareIcon className="h-4 w-4 text-muted group-hover:text-secondary transition-colors shrink-0" />
             </a>

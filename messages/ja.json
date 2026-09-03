@@ -155,15 +155,7 @@
     "viewAll": "すべての記事を見る",
     "noArticles": "現在記事がありません。しばらくお待ちください。",
     "backToList": "記事一覧に戻る",
-    "publishedAt": "公開日",
-    "sns": {
-      "note": "技術記事・エッセイ",
-      "x": "日々の気づき・開発ログ",
-      "instagram": "ライフスタイル・作業風景",
-      "facebook": "ビジネス情報・お知らせ",
-      "linkedin": "キャリア・職歴",
-      "github": "ソースコード・OSS活動"
-    }
+    "publishedAt": "公開日"
   },
   "about": {
     "title": "About",

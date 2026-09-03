@@ -34,11 +34,6 @@ export const socialLinks = [
     href: 'https://coconala.com/users/6220559',
   },
   {
-    id: 'upwork',
-    label: 'Upwork',
-    href: 'https://www.upwork.com/freelancers/~0110e79be3caa21974?mp_source=share',
-  },
-  {
     id: 'standfm',
     label: 'stand.fm',
     href: 'https://stand.fm/channels/6a9870fb0bbc2a81f5777ad4',
