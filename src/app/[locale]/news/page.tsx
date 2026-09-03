@@ -37,6 +37,7 @@ export async function generateMetadata({
 const NEWS_SNS_ORDER = [
   'note',
   'x',
+  'youtube',
   'instagram',
   'facebook',
   'linkedin',
@@ -48,6 +49,7 @@ const NEWS_SNS_ORDER = [
 const SNS_VISUALS: Record<(typeof NEWS_SNS_ORDER)[number], { color: string }> = {
   note: { color: '#41C9B4' },
   x: { color: '#1DA1F2' },
+  youtube: { color: '#FF0000' },
   instagram: { color: '#E1306C' },
   facebook: { color: '#1877F2' },
   linkedin: { color: '#0A66C2' },

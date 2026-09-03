@@ -29,12 +29,13 @@ export async function generateMetadata({
 // href/labelは src/config/site.ts の socialLinks を単一の情報源とし、
 // 見た目(色・アイコン)のみこのページ固有で保持する。
 
-const PROFILE_SNS_ORDER = ['github', 'x', 'note', 'instagram', 'facebook', 'linkedin', 'coconala', 'upwork'] as const;
+const PROFILE_SNS_ORDER = ['github', 'x', 'note', 'youtube', 'instagram', 'facebook', 'linkedin', 'coconala', 'upwork'] as const;
 
 const PROFILE_SNS_VISUALS: Record<(typeof PROFILE_SNS_ORDER)[number], { color: string }> = {
   github: { color: '#6E40C9' },
   x: { color: '#1DA1F2' },
   note: { color: '#41C9B4' },
+  youtube: { color: '#FF0000' },
   instagram: { color: '#E1306C' },
   facebook: { color: '#1877F2' },
   linkedin: { color: '#0A66C2' },

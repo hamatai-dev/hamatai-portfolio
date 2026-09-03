@@ -7,7 +7,12 @@ export const AUTHOR_NAME_EN = 'Taishi Hamano';
 export const socialLinks = [
   { id: 'github', label: 'GitHub', href: 'https://github.com/hamatai-dev' },
   { id: 'x', label: 'X (Twitter)', href: 'https://x.com/hamatai_7109' },
-  { id: 'note', label: 'note', href: 'https://note.com/hamataishi_7109' },
+  { id: 'note', label: 'note', href: 'https://note.com/hamatai_7109' },
+  {
+    id: 'youtube',
+    label: 'YouTube',
+    href: 'https://www.youtube.com/channel/UCaEmeuLIUpCvwULifx5qLow',
+  },
   {
     id: 'instagram',
     label: 'Instagram',
