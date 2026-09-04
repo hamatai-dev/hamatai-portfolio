@@ -102,12 +102,13 @@ export default async function ArticlePage({
 
       {/* Thumbnail */}
       {article.thumbnail && (
-        <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-white/8 mb-10">
+        <div className="relative rounded-2xl overflow-hidden border border-white/8 mb-10">
           <Image
             src={article.thumbnail.url}
             alt={article.title}
-            fill
-            className="object-cover"
+            width={article.thumbnail.width}
+            height={article.thumbnail.height}
+            className="w-full h-auto"
             priority
           />
         </div>
