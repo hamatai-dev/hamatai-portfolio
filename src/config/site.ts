@@ -3,11 +3,12 @@ export const GA_MEASUREMENT_ID = 'G-CP3VCKJ9B8';
 export const SITE_NAME = 'Taishi Hamano';
 export const AUTHOR_NAME_JA = '濱野 大志';
 export const AUTHOR_NAME_EN = 'Taishi Hamano';
+export const NOTE_USERNAME = 'hamatai_7109';
 
 export const socialLinks = [
   { id: 'github', label: 'GitHub', href: 'https://github.com/hamatai-dev' },
   { id: 'x', label: 'X (Twitter)', href: 'https://x.com/hamatai_7109' },
-  { id: 'note', label: 'note', href: 'https://note.com/hamatai_7109' },
+  { id: 'note', label: 'note', href: `https://note.com/${NOTE_USERNAME}` },
   {
     id: 'youtube',
     label: 'YouTube',

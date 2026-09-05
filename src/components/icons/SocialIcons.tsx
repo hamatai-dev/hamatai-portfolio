@@ -3,6 +3,12 @@
 // 呼び出し側で text color を指定して表示色を制御する。
 // ココナラ・stand.fmは Simple Icons に公式ブランドアイコンが存在しないため、
 // 汎用アイコン(店舗マーク・マイクマーク)で代用する。
+//
+// public/images/sns-icon/ 配下に実ブランドロゴのPNGが用意されている場合は
+// 下記 SnsIconChip がそちらを優先表示し、このSVGセットはPNGが無いIDのフォールバックとして使われる。
+
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 interface IconProps {
   className?: string;
@@ -146,3 +152,80 @@ export const socialIconComponents = {
   applepodcast: ApplePodcastIcon,
   substack: SubstackIcon,
 } as const;
+
+type SnsId = keyof typeof socialIconComponents;
+
+// public/images/sns-icon/ に実ロゴPNGが存在するID。ファイル名がidと異なるものは
+// SNS_PNG_FILENAMES で明示的に対応付ける(applepodcast → podcast.png)。
+const SNS_PNG_IDS = new Set<SnsId>([
+  'github',
+  'x',
+  'note',
+  'instagram',
+  'facebook',
+  'linkedin',
+  'coconala',
+  'youtube',
+  'standfm',
+  'spotify',
+  'substack',
+  'applepodcast',
+]);
+
+const SNS_PNG_FILENAMES: Partial<Record<SnsId, string>> = {
+  applepodcast: 'podcast',
+};
+
+// standfm.pngは透過背景に黒いグリフのみのため、このサイトのダークテーマ上では
+// 明るい背景を敷かないと視認できない。他のPNGは自前で色/背景を持つためそのまま表示できる。
+const LIGHT_BACKING_IDS = new Set<SnsId>(['standfm']);
+
+export function SnsIconChip({
+  id,
+  color,
+  size = 40,
+  className,
+}: {
+  id: SnsId;
+  color: string;
+  size?: number;
+  className?: string;
+}) {
+  if (SNS_PNG_IDS.has(id)) {
+    const needsLightBacking = LIGHT_BACKING_IDS.has(id);
+    return (
+      <span
+        className={cn(
+          'inline-flex items-center justify-center rounded-xl shrink-0 overflow-hidden',
+          needsLightBacking ? 'bg-white p-1' : 'bg-white/5 border border-white/10',
+          className,
+        )}
+        style={{ width: size, height: size }}
+      >
+        <Image
+          src={`/images/sns-icon/${SNS_PNG_FILENAMES[id] ?? id}.png`}
+          alt=""
+          width={size}
+          height={size}
+          className="w-full h-full object-contain rounded-lg"
+        />
+      </span>
+    );
+  }
+
+  const Icon = socialIconComponents[id];
+  return (
+    <span
+      className={cn('inline-flex items-center justify-center rounded-xl shrink-0', className)}
+      style={{
+        width: size,
+        height: size,
+        backgroundColor: `${color}20`,
+        border: `1px solid ${color}30`,
+        color,
+      }}
+    >
+      <Icon className="w-1/2 h-1/2" />
+    </span>
+  );
+}

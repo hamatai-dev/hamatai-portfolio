@@ -150,6 +150,8 @@
     "subtitle": "Latest Updates",
     "description": "I share tech articles and project updates.",
     "articles": "Latest Articles",
+    "prevPage": "Previous",
+    "nextPage": "Next",
     "followMe": "Follow Me",
     "readMore": "Read More",
     "viewAll": "View All Articles",

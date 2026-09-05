@@ -8,7 +8,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
 import { getLocalizedAlternates } from '@/lib/seo';
 import { socialLinks } from '@/config/site';
-import { socialIconComponents } from '@/components/icons/SocialIcons';
+import { SnsIconChip } from '@/components/icons/SocialIcons';
 
 export async function generateMetadata({
   params,
@@ -52,7 +52,6 @@ const profileSnsLinks = PROFILE_SNS_ORDER.map((id) => {
     id,
     name: social.label,
     href: social.href,
-    Icon: socialIconComponents[id],
     ...PROFILE_SNS_VISUALS[id],
   };
 });
@@ -177,10 +176,9 @@ function ProfileCard() {
               rel="noopener noreferrer"
               aria-label={sns.name}
               title={sns.name}
-              className="flex items-center justify-center w-8 h-8 rounded-lg transition-transform hover:scale-110"
-              style={{ backgroundColor: `${sns.color}20`, border: `1px solid ${sns.color}30`, color: sns.color }}
+              className="transition-transform hover:scale-110"
             >
-              <sns.Icon className="w-4 h-4" />
+              <SnsIconChip id={sns.id} color={sns.color} size={32} />
             </a>
           ))}
         </div>

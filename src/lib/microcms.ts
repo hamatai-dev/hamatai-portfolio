@@ -96,3 +96,23 @@ export async function getArticlePaths() {
   const articles = await getAllArticleMeta();
   return articles.map((article) => article.id);
 }
+
+export async function getAllArticles(): Promise<MicroCMSArticle[]> {
+  const client = getClient();
+  if (!client) return [];
+
+  const results: MicroCMSArticle[] = [];
+  let offset = 0;
+
+  while (true) {
+    const data = await client.getList<MicroCMSArticleRaw>({
+      endpoint: 'blogs',
+      queries: { limit: LIST_PAGE_SIZE, offset, orders: '-publishedAt' },
+    });
+    results.push(...data.contents.map(toArticle));
+    offset += LIST_PAGE_SIZE;
+    if (offset >= data.totalCount) break;
+  }
+
+  return results;
+}

@@ -150,6 +150,8 @@
     "subtitle": "最新情報・記事",
     "description": "技術記事やプロジェクトの最新情報を発信しています。",
     "articles": "最新記事",
+    "prevPage": "前へ",
+    "nextPage": "次へ",
     "followMe": "SNSでフォロー",
     "readMore": "続きを読む",
     "viewAll": "すべての記事を見る",
