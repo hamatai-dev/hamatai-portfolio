@@ -1,5 +1,5 @@
 import type { Locale } from 'use-intl';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { useTranslations, useLocale } from 'next-intl';
 import { getLocalizedAlternates } from '@/lib/seo';
 import Image from 'next/image';
@@ -9,6 +9,8 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
 import { NeuronBackground } from '@/components/effects/NeuronBackground';
 import { ServicesPainSection } from '@/components/home/ServicesPainSection';
+import { NewsCard } from '@/components/news/NewsCard';
+import { getMergedNewsItems } from '@/lib/news';
 import { works } from '@/data/work';
 
 export async function generateMetadata({
@@ -238,6 +240,53 @@ function WorksSection() {
   );
 }
 
+// ── News Preview ──────────────────────────────────────────────────────────────
+
+async function NewsSection() {
+  const t = await getTranslations('news');
+  const locale = await getLocale();
+  const items = (await getMergedNewsItems()).slice(0, 3);
+
+  if (items.length === 0) return null;
+
+  return (
+    <section className="py-24 bg-surface-subtle">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex items-end justify-between mb-12">
+          <SectionTitle
+            subtitle={t('subtitle')}
+            title={t('title')}
+            className="mb-0"
+          />
+          <Link
+            href="/news"
+            className="hidden sm:inline-flex items-center gap-2 text-accent hover:text-accent-light text-sm font-semibold transition-colors shrink-0 ml-8"
+          >
+            {t('viewAll')}
+            <ArrowRightIcon className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {items.map((item) => (
+            <NewsCard key={`${item.source}-${item.id}`} item={item} locale={locale} />
+          ))}
+        </div>
+
+        <div className="mt-8 flex justify-center sm:hidden">
+          <Link
+            href="/news"
+            className="inline-flex items-center gap-2 text-accent text-sm font-semibold"
+          >
+            {t('viewAll')}
+            <ArrowRightIcon className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Contact CTA ───────────────────────────────────────────────────────────────
 
 function ContactCTASection() {
@@ -278,6 +327,7 @@ export default function HomePage() {
       <HeroSection />
       <ServicesPainSection />
       <WorksSection />
+      <NewsSection />
       <ContactCTASection />
     </>
   );

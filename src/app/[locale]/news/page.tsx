@@ -1,21 +1,16 @@
 import type { Locale } from 'use-intl';
 import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { SectionTitle } from '@/components/ui/SectionTitle';
-import { Badge } from '@/components/ui/Badge';
-import { getAllArticles } from '@/lib/microcms';
-import { getAllNoteArticles } from '@/lib/note';
-import { cn, formatDate } from '@/lib/utils';
-import type { MicroCMSArticle } from '@/types/microcms';
-import type { NoteArticle } from '@/lib/note';
-import type { MicroCMSNewsItem, NewsListItem, NoteNewsItem } from '@/types/news';
+import { getMergedNewsItems } from '@/lib/news';
+import { cn } from '@/lib/utils';
 import { getLocalizedAlternates } from '@/lib/seo';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
 import { SITE_URL, socialLinks } from '@/config/site';
 import { SnsIconChip } from '@/components/icons/SocialIcons';
+import { NewsCard } from '@/components/news/NewsCard';
 
 export async function generateMetadata({
   params,
@@ -75,109 +70,6 @@ const snsLinks = NEWS_SNS_ORDER.map((id) => {
     ...SNS_VISUALS[id],
   };
 });
-
-// ── News item merging ────────────────────────────────────────────────────────
-
-function toMicroCMSNewsItem(article: MicroCMSArticle): MicroCMSNewsItem {
-  return {
-    source: 'microcms',
-    id: article.id,
-    slug: article.id,
-    title: article.title,
-    thumbnailUrl: article.thumbnail?.url,
-    publishedAt: article.publishedAt,
-    category: article.category,
-  };
-}
-
-function toNoteNewsItem(article: NoteArticle): NoteNewsItem {
-  return {
-    source: 'note',
-    id: article.id,
-    title: article.title,
-    thumbnailUrl: article.thumbnailUrl,
-    publishedAt: article.publishedAt,
-    url: article.url,
-  };
-}
-
-function mergeNewsItems(
-  microcmsArticles: MicroCMSArticle[],
-  noteArticles: NoteArticle[],
-): NewsListItem[] {
-  return [
-    ...microcmsArticles.map(toMicroCMSNewsItem),
-    ...noteArticles.map(toNoteNewsItem),
-  ].sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-  );
-}
-
-// ── News card ─────────────────────────────────────────────────────────────────
-
-function NewsCard({ item, locale }: { item: NewsListItem; locale: string }) {
-  const cardClassName =
-    'group block bg-surface-card rounded-2xl border border-white/5 overflow-hidden hover:border-accent/20 transition-all duration-300';
-
-  const cardContent = (
-    <>
-      {/* Thumbnail */}
-      {item.thumbnailUrl ? (
-        <div className="relative h-44 overflow-hidden">
-          <Image
-            src={item.thumbnailUrl}
-            alt={item.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-      ) : (
-        <div className="h-44 bg-surface-raised flex items-center justify-center">
-          <span className="text-4xl">📝</span>
-        </div>
-      )}
-
-      {/* Content */}
-      <div className="p-5">
-        <div className="flex items-center gap-2 mb-2">
-          {item.source === 'microcms' && item.category && (
-            <Badge variant="blue">{item.category.name}</Badge>
-          )}
-          {item.source === 'note' && (
-            <Badge variant="gray" className="inline-flex items-center gap-1">
-              note <ArrowTopRightOnSquareIcon className="h-3 w-3" />
-            </Badge>
-          )}
-          <span className="text-muted text-xs">
-            {formatDate(item.publishedAt, locale === 'ja' ? 'ja-JP' : 'en-US')}
-          </span>
-        </div>
-        <h3 className="text-primary font-semibold text-base leading-snug line-clamp-2">
-          {item.title}
-        </h3>
-      </div>
-    </>
-  );
-
-  if (item.source === 'note') {
-    return (
-      <a
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cardClassName}
-      >
-        {cardContent}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={`/news/${item.slug}`} className={cardClassName}>
-      {cardContent}
-    </Link>
-  );
-}
 
 // ── Pagination ────────────────────────────────────────────────────────────────
 
@@ -256,11 +148,7 @@ export default async function NewsPage({
   const t = await getTranslations({ locale, namespace: 'news' });
   const tNav = await getTranslations({ locale, namespace: 'nav' });
 
-  const [microcmsArticles, noteArticles] = await Promise.all([
-    getAllArticles(),
-    getAllNoteArticles(),
-  ]);
-  const allItems = mergeNewsItems(microcmsArticles, noteArticles);
+  const allItems = await getMergedNewsItems();
 
   const totalPages = Math.max(1, Math.ceil(allItems.length / PAGE_SIZE));
   const currentPage = Math.min(Math.max(1, Number(pageParam) || 1), totalPages);
