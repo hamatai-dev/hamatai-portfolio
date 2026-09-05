@@ -8,6 +8,12 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "a13e705790bc4cce8ed1fec0d49d5102"
+    }
+  ],
   "observability": {
     "enabled": true
   }
