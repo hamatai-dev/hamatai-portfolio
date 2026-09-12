@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import LoadingScreen from '@/components/layout/LoadingScreen';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPersonWebsiteJsonLd } from '@/lib/jsonld';
 import { SITE_URL, GA_MEASUREMENT_ID } from '@/config/site';
@@ -68,6 +69,7 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-surface text-primary`}
       >
         <JsonLd data={buildPersonWebsiteJsonLd()} />
+        <LoadingScreen />
         <NextIntlClientProvider>
           <Header />
           <main className="flex-1 pt-16">{children}</main>
