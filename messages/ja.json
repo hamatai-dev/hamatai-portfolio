@@ -32,7 +32,11 @@
     "statLabel2": "稼働状況",
     "statValue2": "受付中",
     "statLabel3": "対応エリア",
-    "statValue3": "全国・リモート可"
+    "statValue3": "全国・リモート可",
+    "currentlyIn": "現在地：{country}",
+    "mapCaption": "世界を旅しながら開発しています",
+    "legendVisited": "訪問済み",
+    "legendPlanned": "今後の予定"
   },
   "services": {
     "title": "Services",

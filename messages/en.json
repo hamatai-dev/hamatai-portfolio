@@ -32,7 +32,11 @@
     "statLabel2": "Status",
     "statValue2": "Available",
     "statLabel3": "Location",
-    "statValue3": "Japan / Remote"
+    "statValue3": "Japan / Remote",
+    "currentlyIn": "Currently in {country}",
+    "mapCaption": "Building software while traveling the world",
+    "legendVisited": "Visited",
+    "legendPlanned": "Planned"
   },
   "services": {
     "title": "Services",

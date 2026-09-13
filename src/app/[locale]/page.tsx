@@ -9,6 +9,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Badge } from '@/components/ui/Badge';
 import { NeuronBackground } from '@/components/effects/NeuronBackground';
 import { ServicesPainSection } from '@/components/home/ServicesPainSection';
+import { WorldMapHero } from '@/components/home/WorldMapHero';
 import { NewsCard } from '@/components/news/NewsCard';
 import { getMergedNewsItems } from '@/lib/news';
 import { works } from '@/data/work';
@@ -75,61 +76,65 @@ function HeroSection() {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-20 w-full">
-        <div className="max-w-2xl">
-          {/* Available badge */}
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-semibold mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            {t('available')}
-          </span>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="max-w-2xl">
+            {/* Available badge */}
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-semibold mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              {t('available')}
+            </span>
 
-          {/* Role */}
-          <p className="text-secondary text-base font-medium mb-3">{t('role')}</p>
+            {/* Role */}
+            <p className="text-secondary text-base font-medium mb-3">{t('role')}</p>
 
-          {/* Name */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight mb-6">
-            <FlipWord text="Taishi" flipped="大志" />{' '}
-            <FlipWord text="Hamano" flipped="濵野" gradient delayMs={80} />
-          </h1>
+            {/* Name */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight mb-6">
+              <FlipWord text="Taishi" flipped="大志" />{' '}
+              <FlipWord text="Hamano" flipped="濵野" gradient delayMs={80} />
+            </h1>
 
-          {/* Description */}
-          <p className="text-secondary text-lg leading-relaxed mb-8 max-w-lg">
-            {t('description')}
-          </p>
+            {/* Description */}
+            <p className="text-secondary text-lg leading-relaxed mb-8 max-w-lg">
+              {t('description')}
+            </p>
 
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-lg font-semibold hover:bg-accent-dark transition-colors"
-            >
-              {t('ctaPrimary')}
-              <ArrowRightIcon className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/works"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-primary rounded-lg font-semibold hover:bg-white/5 transition-colors"
-            >
-              {t('ctaSecondary')}
-            </Link>
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-lg font-semibold hover:bg-accent-dark transition-colors"
+              >
+                {t('ctaPrimary')}
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/works"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-primary rounded-lg font-semibold hover:bg-white/5 transition-colors"
+              >
+                {t('ctaSecondary')}
+              </Link>
+            </div>
+
+            {/* Stats */}
+            <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/8">
+              {[
+                { label: t('statLabel1'), value: t('statValue1'), accent: false },
+                { label: t('statLabel2'), value: t('statValue2'), accent: true },
+                { label: t('statLabel3'), value: t('statValue3'), accent: false },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-muted text-xs mb-0.5">{stat.label}</p>
+                  <p
+                    className={`text-sm font-semibold ${stat.accent ? 'text-success' : 'text-primary'}`}
+                  >
+                    {stat.value}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/8">
-            {[
-              { label: t('statLabel1'), value: t('statValue1'), accent: false },
-              { label: t('statLabel2'), value: t('statValue2'), accent: true },
-              { label: t('statLabel3'), value: t('statValue3'), accent: false },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="text-muted text-xs mb-0.5">{stat.label}</p>
-                <p
-                  className={`text-sm font-semibold ${stat.accent ? 'text-success' : 'text-primary'}`}
-                >
-                  {stat.value}
-                </p>
-              </div>
-            ))}
-          </div>
+          <WorldMapHero />
         </div>
       </div>
     </section>
