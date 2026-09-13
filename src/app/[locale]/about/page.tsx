@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/Badge';
 import { getLocalizedAlternates } from '@/lib/seo';
 import { socialLinks } from '@/config/site';
 import { SnsIconChip } from '@/components/icons/SocialIcons';
+import { WorldMapHero } from '@/components/home/WorldMapHero';
 
 export async function generateMetadata({
   params,
@@ -234,6 +235,19 @@ function BioSection() {
   );
 }
 
+function JourneySection() {
+  const t = useTranslations('about');
+
+  return (
+    <div className="mt-14">
+      <h2 className="text-primary font-bold text-2xl mb-6">
+        {t('journeyTitle')}
+      </h2>
+      <WorldMapHero />
+    </div>
+  );
+}
+
 function SkillsSection() {
   const t = useTranslations('about');
 
@@ -331,6 +345,7 @@ export default function AboutPage() {
         {/* Main content */}
         <div className="lg:col-span-2">
           <BioSection />
+          <JourneySection />
           <SkillsSection />
           <CareerSection />
         </div>
