@@ -30,4 +30,18 @@ export const works: Work[] = [
     createdAt: '2026-08-11',
     featured: true,
   },
+  {
+    id: 'sumalore',
+    title: { ja: 'スマロア(福岡の賃貸物件検索サービス)', en: 'Sumalore (Fukuoka Rental Property Search)' },
+    description: {
+      ja: '福岡の賃貸物件検索サービス。空室・空室予定・成約済みの状況をリアルタイムに反映し、敷金や礼金などの初期費用も部屋ごとにその場でシミュレーション表示することで、物件探しの不安を解消する。',
+      en: 'A rental property search service for Fukuoka. Reflects vacancy status (vacant / soon-to-be-vacant / already-leased) in real time and simulates the full initial cost breakdown per room on the spot, removing the guesswork from apartment hunting.',
+    },
+    image: '/images/works/sumalore.png',
+    category: 'webapp',
+    technologies: ['Next.js', 'TypeScript', 'Spring Boot'],
+    liveUrl: 'https://sumalore-lp.hamatai.workers.dev/',
+    createdAt: '2026-09-15',
+    featured: true,
+  },
 ];
