@@ -15,7 +15,9 @@ export interface JourneyStop {
 
 // 実際の渡航ルート。関西空港を出発し、台湾（台北から時計回りで一周・電車）→
 // ロサンゼルス（飛行機）→ ダラス（飛行機）→ ヒューストン→モンテレイ→
-// グアナファト→メキシコシティ→オアハカ（現在地、いずれも陸路バス）。
+// グアナファト→メキシコシティ→オアハカ→サンクリストバル・デ・ラス・カサス（陸路バス）→
+// グアテマラのパナハチェル（バス）→サンペドロ・ラ・ラグーナ（アティトラン湖をボート）→
+// アンティグア（現在地、バス）。
 // この先の中米・南米・南アフリカ〜東アフリカ・エジプトは大まかに決まっている予定ルート
 // （具体的な都市は未定のため、国・地域の代表座標を仮置きしています）。
 export const journeyStops: JourneyStop[] = [
@@ -96,6 +98,42 @@ export const journeyStops: JourneyStop[] = [
     city: { ja: 'オアハカ', en: 'Oaxaca' },
     lat: 17.0732,
     lng: -96.7266,
+    transport: 'bus',
+    status: 'visited',
+  },
+  {
+    id: 'san-cristobal',
+    country: { ja: 'メキシコ', en: 'Mexico' },
+    city: { ja: 'サンクリストバル・デ・ラス・カサス', en: 'San Cristóbal de las Casas' },
+    lat: 16.737,
+    lng: -92.6376,
+    transport: 'bus',
+    status: 'visited',
+  },
+  {
+    id: 'panajachel',
+    country: { ja: 'グアテマラ', en: 'Guatemala' },
+    city: { ja: 'パナハチェル', en: 'Panajachel' },
+    lat: 14.7409,
+    lng: -91.1597,
+    transport: 'bus',
+    status: 'visited',
+  },
+  {
+    id: 'san-pedro',
+    country: { ja: 'グアテマラ', en: 'Guatemala' },
+    city: { ja: 'サンペドロ・ラ・ラグーナ', en: 'San Pedro La Laguna' },
+    lat: 14.6934,
+    lng: -91.2723,
+    transport: 'ship',
+    status: 'visited',
+  },
+  {
+    id: 'antigua',
+    country: { ja: 'グアテマラ', en: 'Guatemala' },
+    city: { ja: 'アンティグア', en: 'Antigua' },
+    lat: 14.5586,
+    lng: -90.7295,
     transport: 'bus',
     status: 'visited',
     current: true,
