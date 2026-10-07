@@ -1,10 +1,8 @@
-import type { Locale } from 'use-intl';
+import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
-import { EnvelopeIcon, ClockIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
-import { SectionTitle } from '@/components/ui/SectionTitle';
-import { ContactForm } from './ContactForm';
 import { getLocalizedAlternates } from '@/lib/seo';
+import { PageHero, PageHeroIntro } from '@/components/layout/PageHero';
+import { ContactForm } from './ContactForm';
 
 export async function generateMetadata({
   params,
@@ -21,47 +19,6 @@ export async function generateMetadata({
   };
 }
 
-function ContactInfo() {
-  const t = useTranslations('contact');
-
-  const items = [
-    {
-      icon: ClockIcon,
-      title: t('infoReplyTitle'),
-      desc: t('infoReplyDesc'),
-    },
-    {
-      icon: EnvelopeIcon,
-      title: t('infoEmailTitle'),
-      desc: t('infoEmailDesc'),
-    },
-    {
-      icon: ChatBubbleLeftRightIcon,
-      title: t('infoSnsTitle'),
-      desc: t('infoSnsDesc'),
-    },
-  ];
-
-  return (
-    <div className="space-y-4">
-      {items.map((item) => (
-        <div
-          key={item.title}
-          className="flex items-start gap-4 p-4 bg-surface-card rounded-xl border border-white/5"
-        >
-          <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
-            <item.icon className="h-4 w-4 text-accent" />
-          </div>
-          <div>
-            <p className="text-primary text-sm font-semibold">{item.title}</p>
-            <p className="text-secondary text-xs mt-0.5">{item.desc}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default async function ContactPage({
   params,
 }: {
@@ -70,25 +27,43 @@ export default async function ContactPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contact' });
 
+  const info = [
+    { label: t('infoReplyTitle'), value: t('infoReplyDesc') },
+    { label: t('infoEmailTitle'), value: t('infoEmailDesc') },
+    { label: t('infoSnsTitle'), value: t('infoSnsDesc') },
+  ];
+
   return (
-    <div className="mx-auto max-w-6xl px-6 lg:px-8 py-16">
-      <SectionTitle
-        subtitle={t('subtitle')}
-        title={t('title')}
-        description={t('description')}
+    <>
+      <PageHero
+        label={t('hero.label')}
+        title={t('hero.title')}
+        aside={<PageHeroIntro>{t('description')}</PageHeroIntro>}
+        compact
       />
 
-      <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
-        {/* Info sidebar */}
-        <aside className="lg:col-span-2">
-          <ContactInfo />
-        </aside>
+      <section className="border-t border-line bg-ink">
+        <div className="mx-auto grid max-w-[1440px] gap-14 px-6 pb-24 pt-14 lg:grid-cols-[380px_minmax(0,1fr)] lg:gap-24 lg:px-16 lg:pb-[140px] lg:pt-16">
+          <dl className="flex flex-col">
+            {info.map((item, i) => (
+              <div
+                key={item.label}
+                className="flex flex-col gap-2.5 border-b border-line py-6 first:pt-0 lg:first:pt-6"
+              >
+                <dt className="flex items-center gap-3">
+                  <span className="font-mono text-[11px] text-accent">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-[13px] font-medium text-muted">{item.label}</span>
+                </dt>
+                <dd className="text-lg font-medium text-paper">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
 
-        {/* Form */}
-        <div className="lg:col-span-3 bg-surface-card rounded-2xl border border-white/5 p-6 sm:p-8">
           <ContactForm locale={locale} />
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 export type Transport = 'flight' | 'ship' | 'bus' | 'train';
-export type StopStatus = 'visited' | 'planned';
+type StopStatus = 'visited' | 'planned';
 
 export interface JourneyStop {
   id: string;
@@ -17,7 +17,7 @@ export interface JourneyStop {
 // ロサンゼルス（飛行機）→ ダラス（飛行機）→ ヒューストン→モンテレイ→
 // グアナファト→メキシコシティ→オアハカ→サンクリストバル・デ・ラス・カサス（陸路バス）→
 // グアテマラのパナハチェル（バス）→サンペドロ・ラ・ラグーナ（アティトラン湖をボート）→
-// アンティグア（現在地、バス）。
+// アンティグア（バス）→エルサルバドルのサンタアナ→エル・トゥンコ→サンサルバドル（現在地、いずれもバス）。
 // この先の中米・南米・南アフリカ〜東アフリカ・エジプトは大まかに決まっている予定ルート
 // （具体的な都市は未定のため、国・地域の代表座標を仮置きしています）。
 export const journeyStops: JourneyStop[] = [
@@ -136,6 +136,33 @@ export const journeyStops: JourneyStop[] = [
     lng: -90.7295,
     transport: 'bus',
     status: 'visited',
+  },
+  {
+    id: 'santa-ana',
+    country: { ja: 'エルサルバドル', en: 'El Salvador' },
+    city: { ja: 'サンタアナ', en: 'Santa Ana' },
+    lat: 13.9942,
+    lng: -89.5597,
+    transport: 'bus',
+    status: 'visited',
+  },
+  {
+    id: 'el-tunco',
+    country: { ja: 'エルサルバドル', en: 'El Salvador' },
+    city: { ja: 'エル・トゥンコ', en: 'El Tunco' },
+    lat: 13.4936,
+    lng: -89.3827,
+    transport: 'bus',
+    status: 'visited',
+  },
+  {
+    id: 'san-salvador',
+    country: { ja: 'エルサルバドル', en: 'El Salvador' },
+    city: { ja: 'サンサルバドル', en: 'San Salvador' },
+    lat: 13.6929,
+    lng: -89.2182,
+    transport: 'bus',
+    status: 'visited',
     current: true,
   },
   {
@@ -178,3 +205,44 @@ export const journeyStops: JourneyStop[] = [
 export const currentStop: JourneyStop =
   journeyStops.find((stop) => stop.current) ??
   journeyStops[journeyStops.length - 1];
+
+// 今後の予定国(訪問済みの国は journeyStops から導出する)。順番は想定ルート順。
+export const plannedCountries: { ja: string; en: string }[] = [
+  { ja: 'ニカラグア', en: 'Nicaragua' },
+  { ja: 'コスタリカ', en: 'Costa Rica' },
+  { ja: 'パナマ', en: 'Panama' },
+  { ja: 'コロンビア', en: 'Colombia' },
+  { ja: 'エクアドル', en: 'Ecuador' },
+  { ja: 'ペルー', en: 'Peru' },
+  { ja: 'ボリビア', en: 'Bolivia' },
+  { ja: 'チリ', en: 'Chile' },
+  { ja: 'アルゼンチン', en: 'Argentina' },
+  { ja: 'パラグアイ', en: 'Paraguay' },
+  { ja: 'ウルグアイ', en: 'Uruguay' },
+  { ja: 'ブラジル', en: 'Brazil' },
+  { ja: '南アフリカ', en: 'South Africa' },
+];
+
+export interface RouteLogCountry {
+  en: string;
+  ja: string;
+  status: 'visited' | 'current' | 'planned';
+}
+
+/** 訪問済み(出現順・重複なし)+ 今後の予定を、番号付きログ用に1本の配列にする。 */
+export function getRouteLog(): RouteLogCountry[] {
+  const visited: RouteLogCountry[] = [];
+  for (const stop of journeyStops) {
+    if (stop.status !== 'visited') continue;
+    if (visited.some((c) => c.en === stop.country.en)) continue;
+    visited.push({ ...stop.country, status: 'visited' });
+  }
+  const currentCountry = currentStop.country.en;
+  const log = visited.map((c) =>
+    c.en === currentCountry ? { ...c, status: 'current' as const } : c,
+  );
+  return [
+    ...log,
+    ...plannedCountries.map((c) => ({ ...c, status: 'planned' as const })),
+  ];
+}

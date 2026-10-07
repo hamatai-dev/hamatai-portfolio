@@ -46,3 +46,20 @@ export async function getMergedNewsItems(): Promise<NewsListItem[]> {
   ]);
   return mergeNewsItems(microcmsArticles, noteArticles);
 }
+
+/** 一覧で表示・絞り込みに使うタグ名(note は固定、microCMS はカテゴリ名)。 */
+export function getNewsTag(item: NewsListItem): string {
+  if (item.source === 'note') return 'note';
+  return item.category?.name ?? 'blog';
+}
+
+/** 絞り込み用のタグ一覧。note を先頭に、残りは出現順。件数付き。 */
+export function getNewsTagCounts(items: NewsListItem[]): { tag: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const item of items) {
+    const tag = getNewsTag(item);
+    counts.set(tag, (counts.get(tag) ?? 0) + 1);
+  }
+  const all = [...counts].map(([tag, count]) => ({ tag, count }));
+  return [...all.filter((t) => t.tag === 'note'), ...all.filter((t) => t.tag !== 'note')];
+}

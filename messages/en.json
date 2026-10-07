@@ -9,34 +9,12 @@
     "works": "Works",
     "services": "Services",
     "news": "News",
-    "contact": "Contact",
-    "availableBadge": "Open for new projects in 2026"
+    "contact": "Contact"
   },
   "common": {
     "viewAll": "View All",
-    "learnMore": "Learn More",
     "contact": "Contact",
-    "viewSite": "View Site",
-    "viewGitHub": "View GitHub",
-    "readMore": "Read More",
     "backToList": "Back to List"
-  },
-  "hero": {
-    "available": "Available for Work",
-    "role": "Freelance Web Engineer",
-    "description": "End-to-end from requirements to design, implementation, and release — across web apps, websites, Notion Wiki builds, and mobile apps. I also help turn vibe-coded apps into sustainable, extensible products.",
-    "ctaPrimary": "Get in Touch",
-    "ctaSecondary": "View Works",
-    "statLabel1": "Independent",
-    "statValue1": "Since Apr 2026",
-    "statLabel2": "Status",
-    "statValue2": "Available",
-    "statLabel3": "Location",
-    "statValue3": "Japan / Remote",
-    "currentlyIn": "Currently in {country}",
-    "mapCaption": "Building software while traveling the world",
-    "legendVisited": "Visited",
-    "legendPlanned": "Planned"
   },
   "services": {
     "title": "Services",
@@ -115,31 +93,81 @@
         "Hiring criteria & interview support"
       ]
     },
-    "painSection": {
-      "heading1": "Do any of these",
-      "heading2": "sound familiar?"
+    "hero": {
+      "label": "(SERVICES) — WHAT I DO",
+      "title": "What I",
+      "accent": "build",
+      "intro": "Three services shaped around your needs. I define requirements within your budget and carry the project through development."
     },
-    "ctaTitle": "Have questions? Feel free to reach out.",
-    "ctaDescription": "Have a request that's not listed here? I'm happy to discuss it with you.",
-    "viewPlanDetails": "View detailed plans & pricing",
-    "priceOnRequest": "Pricing varies by scope — feel free to reach out for a quote",
-    "homepagePlan": {
-      "title": "Website Creation — Detailed Plans",
-      "intro": "With 4 years of hands-on experience at a development agency, I work closely with you from requirements gathering through design, coding, and launch, then continue to handle maintenance after release. Performance optimization and SEO/AEO measures are included by default, with multilingual support and logo design available as options.",
-      "flexibleNote": "The prices shown are just a reference point. We'll flexibly adjust the plan and pricing to fit your specific needs and budget, so feel free to reach out to discuss.",
-      "initialPlanHeading": "Initial Production Plans",
-      "maintenancePlanHeading": "Maintenance Plans",
-      "recommended": "Recommended",
-      "monthlyLabel": "/mo",
-      "enterpriseName": "Enterprise / Custom Build",
-      "enterpriseDescription": "For complex requirements or large-scale sites, I'll put together a custom proposal tailored to your needs.",
-      "enterpriseCta": "Get in touch",
-      "optionsHeading": "Options",
-      "flowHeading": "Process (Est. turnaround: ~3 months)",
-      "flowIntro": "AI has made implementation much faster — which is exactly why I spend that saved time on real dialogue during requirements and design. The goal isn't a site that merely looks the part, but one that actually accomplishes what it's for.",
-      "maintenanceOnlyTitle": "Maintenance-only requests are also welcome",
-      "maintenanceOnlyDesc": "I also handle maintenance and operations for websites that are already live (same pricing as the maintenance plans above). Sites built by other developers may also be supported after an initial consultation. A minimum commitment of 3 months applies, and you can cancel anytime after that.",
-      "maintenanceOnlyNote": "Minor edits typically mean anything completable in about 30 minutes, such as text or image swaps and updates to existing page content. New pages or design changes are quoted separately."
+    "list": [
+      {
+        "id": "web",
+        "titleEn": "Web Development",
+        "title": "Web apps, e-commerce & sites",
+        "pain": "\"I have an idea but can't make it real.\" \"I want to sell online.\" \"My site has been left untouched for years…\"",
+        "description": "From web apps, e-commerce and landing pages to corporate sites — end to end with React / Next.js, from requirements to release. I handle everything from design to implementation, with SEO and performance in mind.",
+        "features": [
+          "Web apps, e-commerce, LPs, corporate sites",
+          "Frontend and backend",
+          "API & database design",
+          "CMS integration",
+          "SEO & page speed optimization",
+          "CI/CD setup support"
+        ]
+      },
+      {
+        "id": "mobile",
+        "titleEn": "Mobile Apps",
+        "title": "Mobile app development",
+        "pain": "\"I want an app, but I don't know where to start…\"",
+        "description": "iOS / Android app development. Cross-platform builds deliver high quality at a sensible cost.",
+        "features": [
+          "iOS / Android",
+          "Cross-platform development",
+          "UI/UX design",
+          "App Store / Play Store submission support",
+          "Push notifications"
+        ]
+      },
+      {
+        "id": "ai",
+        "titleEn": "AI Consulting",
+        "title": "AI adoption support",
+        "pain": "\"I want to use AI but don't know where to start or how to make it stick…\" \"Our information is scattered everywhere…\"",
+        "description": "Support for adopting AI in your work, from assessing where you are to making it a habit. Includes internal wikis and knowledge bases with Notion AI, improving AI-built apps for long-term maintenance, and technology selection advice.",
+        "features": [
+          "Organizing AI adoption & usage proposals",
+          "Internal wiki & knowledge base with Notion AI",
+          "Quality improvement & tests for AI-generated code",
+          "Architecture redesign & reducing technical debt",
+          "Technology selection & dev team launch support"
+        ]
+      }
+    ],
+    "cta": "Talk about this service",
+    "process": {
+      "label": "(PROCESS) — HOW WE WORK",
+      "title": "How we",
+      "accent": "work",
+      "intro": "No jargon — I share progress and the reasoning behind decisions often. Pricing depends on the scope, so please start with a conversation.",
+      "steps": [
+        {
+          "title": "Discovery",
+          "desc": "We talk through goals, challenges, budget and schedule."
+        },
+        {
+          "title": "Requirements & quote",
+          "desc": "We organize what to build and I quote based on the scope."
+        },
+        {
+          "title": "Design & build",
+          "desc": "Design and implementation proceed while I keep you updated."
+        },
+        {
+          "title": "Release & operations",
+          "desc": "Maintenance and improvements after launch are welcome too."
+        }
+      ]
     }
   },
   "works": {
@@ -147,10 +175,23 @@
     "subtitle": "Portfolio",
     "description": "A selection of products and projects I have built.",
     "viewAll": "View All Works",
-    "viewSite": "View Site",
-    "viewGitHub": "View GitHub",
     "categoryWebsite": "Websites",
-    "categoryWebapp": "Web Apps"
+    "categoryWebapp": "Web Apps",
+    "case": {
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "role": "Role",
+      "result": "Result",
+      "visit": "Visit site"
+    },
+    "hero": {
+      "label": "(WORKS) — SELECTED WORKS",
+      "title": "Selected",
+      "accent": "works",
+      "intro": "A selection of products and projects I have built. Each one summarizes the challenge, the solution, my role and the result."
+    },
+    "filterAll": "All",
+    "sort": "NEWEST FIRST ↓"
   },
   "news": {
     "title": "News",
@@ -159,34 +200,102 @@
     "articles": "Latest Articles",
     "prevPage": "Previous",
     "nextPage": "Next",
-    "followMe": "Follow Me",
-    "readMore": "Read More",
     "viewAll": "View All Articles",
     "noArticles": "No articles yet. Please check back soon.",
     "backToList": "Back to Articles",
-    "publishedAt": "Published"
+    "publishedAt": "Published",
+    "hero": {
+      "label": "(NEWS) — LATEST",
+      "title": "Latest",
+      "accent": "news",
+      "intro": "Notes from my world trip, projects in progress and site announcements — plus technical articles and the latest on what I am building."
+    },
+    "filterAll": "All",
+    "sort": "NEWEST FIRST ↓",
+    "latest": "LATEST",
+    "archive": "(ARCHIVE) — PAST ARTICLES",
+    "readOnNote": "Read on note",
+    "readArticle": "Read article",
+    "follow": {
+      "label": "(FOLLOW) — FOLLOW ME",
+      "title": "Find me",
+      "accent": "elsewhere"
+    },
+    "pageStatus": "PAGE {current} / {total}"
   },
   "about": {
     "title": "About",
     "subtitle": "About Me",
     "bio": "I went independent in April 2026 and have been working as a freelance web engineer. My strength is handling everything end-to-end — from requirements and design to implementation and release — across both frontend and backend. I also help turn vibe-coded apps into sustainable, extensible products.",
-    "skills": "Skills & Technologies",
-    "basic": "basic",
-    "journeyTitle": "The Journey",
-    "career": "Career",
-    "current": "Current",
-    "name": "Taishi Hamano",
-    "nameEn": "Taishi Hamano",
-    "role": "Freelance Web Engineer",
-    "location": "Japan",
-    "available": "Available for New Projects",
-    "contactCta": "Get in Touch"
+    "hero": {
+      "label": "(ABOUT) — ABOUT ME",
+      "title": "About",
+      "accent": "me."
+    },
+    "meta": {
+      "NAME": "Taishi Hamano / 濱野 大志",
+      "NICKNAME": "Hamatai",
+      "ROLE": "Freelance Web Engineer / AI Consultant",
+      "FROM": "Kansai, Japan",
+      "MODE": "Nomad, traveling the world",
+      "FOOD": "Spice curry",
+      "HOBBY": "Soccer, hiking, camping",
+      "STATUS": "Available for new projects"
+    },
+    "profile": {
+      "label": "(01) — PROFILE",
+      "statement": "Not just building it,\nbut making it last and get used.",
+      "body": "I went independent in April 2026 and work as a freelance web engineer. I can cover frontend and backend alike, and my strength is handling everything end to end — from requirements and design to implementation and release.\n\nLately I also help businesses adopt AI as a consultant. Until around the end of 2027 I am traveling the world as a nomad, continuing to build wherever I am."
+    },
+    "journey": {
+      "label": "(02) — JOURNEY",
+      "title": "The",
+      "accent": "route",
+      "intro": "Starting from Japan, through Taiwan to North America and Central America. Right now I am in El Salvador, heading down South America toward South Africa — the plan runs until around the end of 2027.",
+      "logTitle": "ROUTE LOG — {total} COUNTRIES · {visited} VISITED",
+      "legendVisited": "Visited",
+      "legendPlanned": "Planned",
+      "statusVisited": "VISITED",
+      "statusPlanned": "PLANNED",
+      "now": "NOW",
+      "next": "NEXT →",
+      "nextVia": "Heading south through the Americas",
+      "until": "~ around end of 2027"
+    },
+    "rhythm": {
+      "label": "(03) — DAILY RHYTHM",
+      "title": "A day",
+      "accent": "on the road",
+      "intro": "The place changes, but the rhythm of my day does not. Meetings are gathered in morning and evening slots, and the daytime goes to focused work and wandering the city.",
+      "centerLabel": "A TYPICAL DAY",
+      "centerSub": "A day in the life of a nomad",
+      "legendWork": "Work",
+      "legendLife": "Life & exploring",
+      "legendSleep": "Sleep",
+      "items": {
+        "sleep": "Sleep",
+        "wake": "Wake up, shower, brush teeth",
+        "meeting": "Meetings",
+        "work": "Focused work",
+        "sightseeing": "Sightseeing & walking",
+        "cafe": "Working from a café",
+        "food": "Local food",
+        "free": "Shower & free time",
+        "evening": "Meetings & work",
+        "language": "Language study"
+      }
+    },
+    "career": {
+      "label": "(04) — CAREER",
+      "title": "Where I've",
+      "accent": "been",
+      "now": "NOW"
+    }
   },
   "contact": {
     "title": "Contact",
     "subtitle": "Get in Touch",
     "description": "Feel free to reach out for project inquiries or consultations. I typically respond within 1–2 business days.",
-    "ctaTitle": "Got a project or question? Let's talk.",
     "infoReplyTitle": "Response Time",
     "infoReplyDesc": "Within 1–2 business days",
     "infoEmailTitle": "Email",
@@ -200,7 +309,6 @@
     "email": "Email",
     "emailPlaceholder": "example@email.com",
     "type": "Inquiry Type",
-    "typePlaceholder": "Select a type",
     "message": "Message",
     "messagePlaceholder": "Please describe your project, timeline, and budget (min. 10 characters)",
     "submit": "Send Message",
@@ -216,19 +324,111 @@
       "turnstile": "Verification failed. Please try the checkbox again."
     },
     "types": {
-      "webapp": "Web App Development",
-      "homepage": "Website Creation",
-      "notion": "Notion Wiki Setup",
-      "mobile": "Mobile App Development",
-      "rebuild": "Vibe-Coded App Refinement",
-      "consulting": "Tech Consulting",
+      "web": "Web Development",
+      "mobile": "Mobile Apps",
+      "ai": "AI Consulting",
       "other": "Other"
-    }
+    },
+    "hero": {
+      "label": "(CONTACT) — GET IN TOUCH",
+      "title": "Contact"
+    },
+    "privacyNote": "Your message is used only to reply to you."
   },
   "footer": {
     "description": "Freelance web engineer handling everything end-to-end, from requirements to design, implementation, and release. I cover web apps, websites, and mobile apps, and also help make vibe-coded apps sustainable.",
     "links": "Links",
     "social": "Social",
-    "copyright": "© {year} Taishi Hamano. All rights reserved."
+    "copyright": "© {year} Taishi Hamano. All rights reserved.",
+    "tagline": "Freelance web engineer handling everything from requirements to design, build and release."
+  },
+  "home": {
+    "hero": {
+      "roleLine": "FREELANCE WEB ENGINEER · AI CONSULTANT · SINCE 2026.04",
+      "lead": "End to end — from requirements to design, build and release. I also consult on AI adoption.\nTraveling the world as a nomad until around the end of 2027.",
+      "ctaPrimary": "Contact",
+      "ctaSecondary": "View works",
+      "now": "NOW"
+    },
+    "about": {
+      "label": "(01) — ABOUT",
+      "statement1": "From the first conversation to life after launch,",
+      "statement2": "I value clear communication.",
+      "body": "Web apps, websites, Notion wikis and mobile apps. I also help turn vibe-coded apps into sustainable, extensible products.",
+      "strengths": [
+        {
+          "title": "End to end",
+          "desc": "Requirements, design, implementation and release, all handled by one person. A single point of contact means faster decisions and fixes."
+        },
+        {
+          "title": "Sustainable design",
+          "desc": "Even apps built with AI get proper code quality, tests and architecture, so they stay easy to maintain."
+        },
+        {
+          "title": "Open dialogue",
+          "desc": "No jargon. I share progress and the reasoning behind decisions often, keeping everyone aligned and easy to reach."
+        }
+      ]
+    },
+    "works": {
+      "label": "(02) — SELECTED WORKS",
+      "title1": "Selected",
+      "title2": "works",
+      "viewAll": "View all works"
+    },
+    "services": {
+      "label": "(03) — SERVICES",
+      "title1": "What I",
+      "title2": "build",
+      "intro": "A wide range of services tailored to your needs. I define requirements within your budget and carry the project through development.",
+      "viewAll": "View all services",
+      "items": [
+        {
+          "titleEn": "Web Development",
+          "title": "Web Development",
+          "pain": "\"I have an idea but can't make it real.\" \"I want to sell online.\" \"My site has been left untouched for years…\"",
+          "description": "From web apps, e-commerce and landing pages to corporate sites — end to end with React / Next.js, from requirements to release, with SEO and performance in mind.",
+          "features": [
+            "Web apps, e-commerce, LPs, corporate sites",
+            "API & database design",
+            "SEO & performance"
+          ]
+        },
+        {
+          "titleEn": "Mobile Apps",
+          "title": "Mobile App Development",
+          "pain": "\"I want an app, but I don't know where to start…\"",
+          "description": "iOS / Android app development. Cross-platform builds deliver high quality at a sensible cost.",
+          "features": [
+            "iOS / Android",
+            "UI/UX design",
+            "Store submission support"
+          ]
+        },
+        {
+          "titleEn": "AI Consulting",
+          "title": "AI Consulting",
+          "pain": "\"I want to use AI but don't know where to start or how to make it stick…\" \"Our information is scattered everywhere…\"",
+          "description": "Support for adopting AI in your work, from assessing where you are to making it a habit. Includes building internal wikis and knowledge bases with Notion AI.",
+          "features": [
+            "AI adoption assessment & proposals",
+            "Notion wiki setup",
+            "Hands-on training"
+          ]
+        }
+      ]
+    },
+    "news": {
+      "label": "(04) — NEWS",
+      "title": "Notes & news",
+      "viewAll": "View all articles"
+    },
+    "contact": {
+      "label": "(05) — CONTACT",
+      "line1": "Next stop:",
+      "line2": "your project.",
+      "body": "Feel free to reach out about work or consultations.\nI usually reply within 1–2 business days.",
+      "button": "Contact"
+    }
   }
 }

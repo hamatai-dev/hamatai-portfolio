@@ -54,7 +54,7 @@ export function TurnstileWidget({ locale, onVerify, onExpire, onError, ref }: Pr
       callback: onVerify,
       'expired-callback': onExpire,
       'error-callback': onError,
-      theme: 'auto',
+      theme: 'dark',
       language: locale,
     });
   };

@@ -1,21 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
-import {
-  CodeBracketIcon,
-  GlobeAltIcon,
-  DevicePhoneMobileIcon,
-  BriefcaseIcon,
-  DocumentTextIcon,
-  WrenchScrewdriverIcon,
-  CheckIcon,
-  ArrowRightIcon,
-} from '@heroicons/react/24/outline';
-import type { Locale } from 'use-intl';
-import { Link } from '@/i18n/navigation';
-import { SectionTitle } from '@/components/ui/SectionTitle';
-import { Badge } from '@/components/ui/Badge';
-import { services } from '@/data/services';
+import type { Locale } from 'next-intl';
 import { getLocalizedAlternates } from '@/lib/seo';
+import { PageHero, PageHeroIntro } from '@/components/layout/PageHero';
+import { ServiceSection, type ServiceContent } from '@/components/services/ServiceSection';
+import { ProcessSection } from '@/components/services/ProcessSection';
 
 export async function generateMetadata({
   params,
@@ -32,109 +21,41 @@ export async function generateMetadata({
   };
 }
 
-const serviceIcons: Record<string, React.ElementType> = {
-  webapp: CodeBracketIcon,
-  homepage: GlobeAltIcon,
-  notion: DocumentTextIcon,
-  mobile: DevicePhoneMobileIcon,
-  rebuild: WrenchScrewdriverIcon,
-  consulting: BriefcaseIcon,
-};
-
-function ServiceCard({
-  service,
-  t,
-}: {
-  service: (typeof services)[number];
-  t: ReturnType<typeof useTranslations>;
-}) {
-  const Icon = serviceIcons[service.id] ?? CodeBracketIcon;
-  const features = t.raw(`${service.id as 'webapp'}.features`) as string[];
-
-  return (
-    <div className="group bg-surface-card rounded-2xl border border-white/5 p-7 hover:border-accent/20 transition-all duration-300 flex flex-col">
-      {/* Icon + Title */}
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
-          <Icon className="h-6 w-6 text-accent" />
-        </div>
-        <h2 className="text-primary font-bold text-xl">
-          {t(`${service.id as 'webapp'}.title`)}
-        </h2>
-      </div>
-
-      {/* Description */}
-      <p className="text-secondary text-sm leading-relaxed mb-5">
-        {t(`${service.id as 'webapp'}.description`)}
-      </p>
-
-      {/* Features */}
-      <ul className="space-y-2 mb-5 flex-1">
-        {features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2 text-sm text-secondary">
-            <CheckIcon className="h-4 w-4 text-success shrink-0 mt-0.5" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-      {/* Technologies */}
-      {service.technologies.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5 mb-4">
-          {service.technologies.map((tech) => (
-            <Badge key={tech} variant="blue">
-              {tech}
-            </Badge>
-          ))}
-        </div>
-      )}
-
-      {/* Pricing note */}
-      {service.id === 'homepage' ? (
-        <Link
-          href="/services/homepage-plan"
-          className="inline-flex items-center gap-1 text-accent hover:text-accent-light text-xs font-semibold transition-colors"
-        >
-          {t('viewPlanDetails')}
-          <ArrowRightIcon className="h-3.5 w-3.5" />
-        </Link>
-      ) : (
-        <p className="text-muted text-xs">{t('priceOnRequest')}</p>
-      )}
-    </div>
-  );
-}
-
 export default function ServicesPage() {
   const t = useTranslations('services');
-  const tc = useTranslations('common');
+  const list = t.raw('list') as ServiceContent[];
+
+  const index = (
+    <nav
+      aria-label="Services"
+      className="flex flex-wrap gap-3 border-t border-line pt-6"
+    >
+      {list.map((service, i) => (
+        <a
+          key={service.id}
+          href={`#${service.id}`}
+          className="inline-flex items-center gap-2.5 rounded-full border border-line px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:border-paper"
+        >
+          <span className="font-mono text-[11px] text-accent">{String(i + 1).padStart(2, '0')}</span>
+          {service.titleEn}
+        </a>
+      ))}
+    </nav>
+  );
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
-      <SectionTitle
-        subtitle={t('subtitle')}
-        title={t('title')}
-        description={t('description')}
+    <>
+      <PageHero
+        label={t('hero.label')}
+        title={t('hero.title')}
+        accent={t('hero.accent')}
+        aside={<PageHeroIntro>{t('hero.intro')}</PageHeroIntro>}
+        below={index}
       />
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service) => (
-          <ServiceCard key={service.id} service={service} t={t} />
-        ))}
-      </div>
-
-      {/* CTA */}
-      <div className="mt-16 p-8 bg-surface-subtle rounded-2xl border border-white/5 text-center">
-        <h3 className="text-primary font-bold text-xl mb-2">{t('ctaTitle')}</h3>
-        <p className="text-secondary text-sm mb-6">{t('ctaDescription')}</p>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-xl font-semibold hover:bg-accent-dark transition-colors"
-        >
-          {tc('contact')}
-          <ArrowRightIcon className="h-4 w-4" />
-        </Link>
-      </div>
-    </div>
+      {list.map((service, i) => (
+        <ServiceSection key={service.id} service={service} index={i} total={list.length} />
+      ))}
+      <ProcessSection />
+    </>
   );
 }

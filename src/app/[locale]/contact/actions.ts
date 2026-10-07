@@ -12,8 +12,6 @@ const contactSchema = z.object({
   message: z.string().min(10, '10文字以上入力してください'),
 });
 
-export type ContactFormData = z.infer<typeof contactSchema>;
-
 async function verifyTurnstileToken(token: string): Promise<boolean> {
   const secretKey = process.env.TURNSTILE_SECRET_KEY;
   if (!secretKey) {

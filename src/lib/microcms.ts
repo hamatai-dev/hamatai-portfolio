@@ -30,25 +30,6 @@ function toArticle(
   };
 }
 
-const EMPTY_RESPONSE = {
-  contents: [] as MicroCMSArticle[],
-  totalCount: 0,
-  offset: 0,
-  limit: 0,
-};
-
-export async function getArticles(limit = 9) {
-  const client = getClient();
-  if (!client) return EMPTY_RESPONSE;
-
-  const data = await client.getList<MicroCMSArticleRaw>({
-    endpoint: 'blogs',
-    queries: { limit, orders: '-publishedAt' },
-  });
-
-  return { ...data, contents: data.contents.map(toArticle) };
-}
-
 export async function getArticle(
   contentId: string,
 ): Promise<MicroCMSArticle | null> {
