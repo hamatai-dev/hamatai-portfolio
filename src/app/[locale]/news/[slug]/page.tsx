@@ -1,4 +1,4 @@
-import type { Locale } from 'use-intl';
+import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { Link, getPathname } from '@/i18n/navigation';
@@ -6,7 +6,6 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { notFound } from 'next/navigation';
 import { getArticle, getArticlePaths } from '@/lib/microcms';
 import { formatDate } from '@/lib/utils';
-import { Badge } from '@/components/ui/Badge';
 import { getLocalizedAlternates } from '@/lib/seo';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildArticleJsonLd, buildBreadcrumbJsonLd } from '@/lib/jsonld';
@@ -64,13 +63,13 @@ export default async function ArticlePage({
   ]);
 
   return (
-    <div className="mx-auto max-w-3xl px-6 lg:px-8 py-16">
+    <div className="mx-auto max-w-3xl px-6 py-14 lg:px-8 lg:py-20">
       <JsonLd data={articleJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
       {/* Back */}
       <Link
         href="/news"
-        className="inline-flex items-center gap-2 text-secondary hover:text-primary text-sm font-medium transition-colors mb-8"
+        className="mb-10 inline-flex items-center gap-2 font-mono text-xs tracking-[0.05em] text-muted transition-colors hover:text-accent"
       >
         <ArrowLeftIcon className="h-4 w-4" />
         {t('backToList')}
@@ -78,23 +77,24 @@ export default async function ArticlePage({
 
       {/* Header */}
       <header className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
+        <div className="mb-5 flex items-center gap-4">
           {article.category && (
-            <Badge variant="blue">{article.category.name}</Badge>
+            <span className="rounded-full border border-line px-3 py-1 text-xs font-medium text-paper">
+              {article.category.name}
+            </span>
           )}
-          <time className="text-muted text-sm">
-            {t('publishedAt')}:{' '}
+          <time className="font-mono text-xs text-muted">
             {formatDate(
               article.publishedAt,
               locale === 'ja' ? 'ja-JP' : 'en-US',
             )}
           </time>
         </div>
-        <h1 className="text-primary font-bold text-2xl sm:text-3xl leading-snug">
+        <h1 className="text-2xl font-bold leading-snug text-paper sm:text-3xl lg:text-4xl">
           {article.title}
         </h1>
         {article.description && (
-          <p className="text-secondary text-base mt-3 leading-relaxed">
+          <p className="mt-4 text-base leading-[1.9] text-paper-dim">
             {article.description}
           </p>
         )}
@@ -102,7 +102,7 @@ export default async function ArticlePage({
 
       {/* Thumbnail */}
       {article.thumbnail && (
-        <div className="relative rounded-2xl overflow-hidden border border-white/8 mb-10">
+        <div className="relative mb-12 overflow-hidden rounded-lg border border-line">
           <Image
             src={article.thumbnail.url}
             alt={article.title}
@@ -121,10 +121,10 @@ export default async function ArticlePage({
       />
 
       {/* Footer */}
-      <div className="mt-16 pt-8 border-t border-white/8">
+      <div className="mt-16 border-t border-line pt-8">
         <Link
           href="/news"
-          className="inline-flex items-center gap-2 text-accent hover:text-accent-light text-sm font-semibold transition-colors"
+          className="inline-flex items-center gap-2 border-b border-paper pb-1.5 text-sm font-medium text-paper transition-colors hover:border-accent hover:text-accent"
         >
           <ArrowLeftIcon className="h-4 w-4" />
           {t('backToList')}

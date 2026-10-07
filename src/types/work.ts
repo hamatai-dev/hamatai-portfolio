@@ -5,6 +5,15 @@ export interface LocalizedText {
     en: string;
 }
 
+interface WorkCaseStudy {
+    subtitle: LocalizedText;
+    kind: string;
+    challenge: LocalizedText;
+    solution: LocalizedText;
+    role: LocalizedText;
+    result: LocalizedText;
+}
+
 export interface Work {
     id: string;
     title: LocalizedText;
@@ -16,4 +25,5 @@ export interface Work {
     liveUrl?: string;
     createdAt: string;
     featured: boolean;
+    caseStudy?: WorkCaseStudy;
 }

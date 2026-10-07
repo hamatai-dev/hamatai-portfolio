@@ -1,4 +1,4 @@
-import type { Locale } from 'use-intl';
+import type { Locale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { getPathname } from '@/i18n/navigation';
 

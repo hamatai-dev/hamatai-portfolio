@@ -15,3 +15,10 @@ export function formatDate(
     day: 'numeric',
   });
 }
+
+/** 日本時間基準で `2026.09.15` 形式に整形する。 */
+export function formatDateDotted(dateString: string): string {
+  return new Date(dateString)
+    .toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' })
+    .replaceAll('-', '.');
+}

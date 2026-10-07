@@ -2,7 +2,6 @@ export const SITE_URL = 'https://hamatai.com';
 export const GA_MEASUREMENT_ID = 'G-CP3VCKJ9B8';
 export const SITE_NAME = 'Taishi Hamano';
 export const AUTHOR_NAME_JA = '濱野 大志';
-export const AUTHOR_NAME_EN = 'Taishi Hamano';
 export const NOTE_USERNAME = 'hamatai_7109';
 
 export const socialLinks = [
@@ -55,3 +54,13 @@ export const socialLinks = [
     href: 'https://substack.com/@hamatai',
   },
 ] as const;
+
+/**
+ * トップのヒーロー背景動画。ファイルを `public/` に置いたらここを有効にする。
+ * `null` にすると動画なし(暗い背景+グラデーション)で表示する。
+ * Cloudflare の静的アセットは 1ファイル 25MiB までなので、差し替え時はサイズに注意。
+ */
+export const HERO_VIDEO: { src: string; poster: string } | null = {
+  src: '/videos/hero.mp4',
+  poster: '/images/hero-poster.jpg',
+};

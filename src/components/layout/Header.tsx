@@ -20,10 +20,10 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: t('about'), href: '/about' },
-    { label: t('works'), href: '/works' },
-    { label: t('services'), href: '/services' },
-    { label: t('news'), href: '/news' },
+    { no: '01', label: t('about'), href: '/about' },
+    { no: '02', label: t('works'), href: '/works' },
+    { no: '03', label: t('services'), href: '/services' },
+    { no: '04', label: t('news'), href: '/news' },
   ];
 
   const isActive = (href: string) =>
@@ -32,48 +32,38 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-surface/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20'
-          : 'bg-transparent'
+        scrolled || mobileOpen
+          ? 'bg-ink/90 backdrop-blur-xl border-b border-line'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <nav className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+      <nav className="mx-auto max-w-[1440px] px-6 lg:px-16 h-[72px] lg:h-[98px] flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/"
-            className="text-primary font-bold text-lg tracking-tight hover:text-accent transition-colors shrink-0"
-          >
-            hamatai
-            <span className="text-accent">.</span>
-          </Link>
-
-          {/* Available badge (speech bubble) */}
-          <div className="hidden md:flex relative items-center gap-1.5 pl-2.5 pr-3 py-1.5 rounded-full border border-accent/20 bg-accent/10 text-accent text-xs font-semibold whitespace-nowrap">
-            <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-accent/10 border-l border-b border-accent/20" />
-            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0" />
-            {t('availableBadge')}
-          </div>
-        </div>
+        <Link
+          href="/"
+          className="font-display text-[32px] leading-none tracking-[-0.5px] text-paper hover:text-accent transition-colors shrink-0"
+        >
+          hamatai.
+        </Link>
 
         {/* Desktop navigation */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm font-medium transition-colors relative group ${
-                isActive(item.href)
-                  ? 'text-primary'
-                  : 'text-secondary hover:text-primary'
-              }`}
+              className="group flex items-center gap-2 text-[15px] font-medium"
             >
-              {item.label}
+              <span className="font-mono text-[10px] text-accent">{item.no}</span>
               <span
-                className={`absolute -bottom-0.5 left-0 h-px bg-accent transition-all duration-200 ${
-                  isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                className={`transition-colors ${
+                  isActive(item.href)
+                    ? 'text-paper'
+                    : 'text-paper-dim group-hover:text-paper'
                 }`}
-              />
+              >
+                {item.label}
+              </span>
             </Link>
           ))}
         </div>
@@ -83,15 +73,16 @@ export default function Header() {
           <LanguageSwitcher />
           <Link
             href="/contact"
-            className="px-4 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-dark transition-colors"
+            className="inline-flex items-center gap-2 rounded-full border border-paper px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-paper hover:text-ink"
           >
+            <span className="h-[7px] w-[7px] rounded-full bg-accent animate-pulse" />
             {t('contact')}
           </Link>
         </div>
 
         {/* Mobile menu button */}
         <button
-          className="lg:hidden text-secondary hover:text-primary transition-colors p-1"
+          className="lg:hidden text-paper-dim hover:text-paper transition-colors p-1"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -105,27 +96,26 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-surface-subtle border-b border-white/5">
-          <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1">
+        <div className="lg:hidden border-t border-line">
+          <div className="mx-auto max-w-[1440px] px-6 py-4 flex flex-col">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`py-3 px-2 text-sm font-medium border-b border-white/5 last:border-0 transition-colors ${
-                  isActive(item.href)
-                    ? 'text-primary'
-                    : 'text-secondary hover:text-primary'
-                }`}
+                className="flex items-center gap-3 py-4 border-b border-line text-base font-medium"
                 onClick={() => setMobileOpen(false)}
               >
-                {item.label}
+                <span className="font-mono text-[11px] text-accent">{item.no}</span>
+                <span className={isActive(item.href) ? 'text-paper' : 'text-paper-dim'}>
+                  {item.label}
+                </span>
               </Link>
             ))}
-            <div className="pt-3 flex items-center justify-between">
+            <div className="pt-5 flex items-center justify-between">
               <LanguageSwitcher />
               <Link
                 href="/contact"
-                className="px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-ink"
                 onClick={() => setMobileOpen(false)}
               >
                 {t('contact')}

@@ -9,34 +9,12 @@
     "works": "Works",
     "services": "Services",
     "news": "News",
-    "contact": "Contact",
-    "availableBadge": "2026年の新規依頼募集中"
+    "contact": "Contact"
   },
   "common": {
     "viewAll": "すべて見る",
-    "learnMore": "詳しく見る",
     "contact": "お問い合わせ",
-    "viewSite": "サイトを見る",
-    "viewGitHub": "GitHubを見る",
-    "readMore": "続きを読む",
     "backToList": "一覧に戻る"
-  },
-  "hero": {
-    "available": "受付中",
-    "role": "フリーランス Webエンジニア",
-    "description": "要件定義から設計・実装・リリースまで一気通貫で対応。Webアプリ・ホームページ・Notion Wiki構築・モバイルアプリと幅広い領域に対応し、バイブコーディングで作ったアプリを持続可能で拡張性のあるプロダクトへ磨き上げる支援も行っています。",
-    "ctaPrimary": "お問い合わせ",
-    "ctaSecondary": "実績を見る",
-    "statLabel1": "独立",
-    "statValue1": "2026年4月〜",
-    "statLabel2": "稼働状況",
-    "statValue2": "受付中",
-    "statLabel3": "対応エリア",
-    "statValue3": "全国・リモート可",
-    "currentlyIn": "現在地：{country}",
-    "mapCaption": "世界を旅しながら開発しています",
-    "legendVisited": "訪問済み",
-    "legendPlanned": "今後の予定"
   },
   "services": {
     "title": "Services",
@@ -115,31 +93,81 @@
         "採用基準・面接サポート"
       ]
     },
-    "painSection": {
-      "heading1": "こういったお悩みは、",
-      "heading2": "ありませんか？"
+    "hero": {
+      "label": "(SERVICES) — 事業",
+      "title": "What I",
+      "accent": "build",
+      "intro": "お客様のニーズに合わせた3つのサービス。ご予算に寄り添いながら要件を定義し、開発を進めます。"
     },
-    "ctaTitle": "ご不明な点はお気軽にご相談ください",
-    "ctaDescription": "掲載サービス以外のご要望もお気軽にご相談いただけます。",
-    "viewPlanDetails": "詳細プラン・料金を見る",
-    "priceOnRequest": "料金は内容により異なるため、まずはお気軽にご相談ください",
-    "homepagePlan": {
-      "title": "ホームページ制作 詳細プラン",
-      "intro": "制作会社で4年間の実務経験を積んだエンジニアが、要件定義から丁寧に伴走し、デザイン・コーディング・公開、そして公開後の保守運用まで一貫して対応します。表示速度の最適化とSEO/AEO対策を標準装備し、多言語対応やロゴ制作などはオプションで追加いただけます。",
-      "flexibleNote": "掲載の料金はあくまで目安です。実際にはお客様のご要望や予算に応じて、プラン内容や金額を柔軟に調整いたしますので、まずはお気軽にご相談ください。",
-      "initialPlanHeading": "初期制作プラン",
-      "maintenancePlanHeading": "保守運用プラン",
-      "recommended": "おすすめ",
-      "monthlyLabel": "/月",
-      "enterpriseName": "エンタープライズ / カスタム開発",
-      "enterpriseDescription": "要件が複雑な場合や大規模なサイトは、内容に応じてオーダーメイドでご提案します。",
-      "enterpriseCta": "お問い合わせください",
-      "optionsHeading": "オプション",
-      "flowHeading": "制作の流れ（納期目安：約3ヶ月）",
-      "flowIntro": "AIの活用で実装スピードは大きく上がりましたが、だからこそ要件定義や設計段階の対話にしっかり時間をかけています。表面的な体裁を整えるだけのサイトではなく、目的をきちんと果たすサイトに仕上げるためのプロセスです。",
-      "maintenanceOnlyTitle": "保守運用のみのご依頼も可能です",
-      "maintenanceOnlyDesc": "すでに公開済みのホームページの保守・運用のみのご依頼も承っています（料金は上記の保守運用プランと同額です）。他社制作のサイトも事前にご相談いただければ対応可能な場合があります。ご利用は最低3ヶ月からで、以降はいつでも解約可能です。",
-      "maintenanceOnlyNote": "軽微な修正の目安：30分程度で完了するテキスト・画像の差し替えや、既存ページ内の情報更新など。新規ページ追加やデザイン変更は別途お見積りいたします。"
+    "list": [
+      {
+        "id": "web",
+        "titleEn": "Web Development",
+        "title": "Web開発",
+        "pain": "「アイデアはあるのに形にできない」「ネットで販売したい」「作ったまま放置しているサイトがある…」",
+        "description": "Webアプリ・ECサイト・LP・コーポレートサイトまで、React / Next.js を中心に要件定義から設計・実装・リリースまで一気通貫で対応します。デザインから実装まで一貫して担当し、SEOや表示速度にも配慮します。",
+        "features": [
+          "Webアプリ・ECサイト・LP・コーポレートサイト",
+          "フロントエンド・バックエンド両対応",
+          "API・DB設計",
+          "CMS連携",
+          "SEO対策・ページスピード最適化",
+          "CI/CD構築サポート"
+        ]
+      },
+      {
+        "id": "mobile",
+        "titleEn": "Mobile Apps",
+        "title": "モバイルアプリ開発",
+        "pain": "「アプリ化したいけど、何から手をつければいいかわからない…」",
+        "description": "iOS / Android アプリの開発。クロスプラットフォーム開発で、コスト効率よく高品質なアプリを提供します。",
+        "features": [
+          "iOS / Android 対応",
+          "クロスプラットフォーム開発",
+          "UI/UX 設計",
+          "App Store / Play Store 申請サポート",
+          "プッシュ通知対応"
+        ]
+      },
+      {
+        "id": "ai",
+        "titleEn": "AI Consulting",
+        "title": "AI導入コンサル",
+        "pain": "「AIを使いたいけど、何から始めて、どう活かせばいいかわからない…」「情報があちこちに散らばっている…」",
+        "description": "業務へのAI導入を、現状整理から活用の定着まで伴走。Notion AIなどを使った社内Wiki・情報基盤の構築や、AIで作ったアプリの保守・拡張に向けた改善、技術選定の相談も含みます。",
+        "features": [
+          "業務へのAI導入の整理・活用提案",
+          "Notion AIを使った社内Wiki・情報基盤の構築",
+          "AI生成コードの品質改善・テスト整備",
+          "アーキテクチャ再設計・技術的負債の解消",
+          "技術選定・開発チーム立ち上げ支援"
+        ]
+      }
+    ],
+    "cta": "このサービスについて相談する",
+    "process": {
+      "label": "(PROCESS) — 進め方",
+      "title": "How we",
+      "accent": "work",
+      "intro": "専門用語を使わず、進捗や判断の理由をこまめに共有します。料金は内容により異なるため、まずはお気軽にご相談ください。",
+      "steps": [
+        {
+          "title": "ヒアリング",
+          "desc": "目的や課題、ご予算、スケジュールを伺います。"
+        },
+        {
+          "title": "要件定義・お見積り",
+          "desc": "作るものを整理し、内容に合わせてお見積りします。"
+        },
+        {
+          "title": "設計・開発",
+          "desc": "進捗を共有しながら、デザインと実装を進めます。"
+        },
+        {
+          "title": "リリース・運用",
+          "desc": "公開後の保守や改善も、引き続きご相談いただけます。"
+        }
+      ]
     }
   },
   "works": {
@@ -147,10 +175,23 @@
     "subtitle": "実績・制作物",
     "description": "これまでに開発したプロダクトや制作物の一部を紹介します。",
     "viewAll": "すべての実績を見る",
-    "viewSite": "サイトを見る",
-    "viewGitHub": "GitHubを見る",
     "categoryWebsite": "ホームページ",
-    "categoryWebapp": "Webアプリ"
+    "categoryWebapp": "Webアプリ",
+    "case": {
+      "challenge": "課題",
+      "solution": "解決",
+      "role": "担当",
+      "result": "成果",
+      "visit": "サイトを見る"
+    },
+    "hero": {
+      "label": "(WORKS) — 実績・制作物",
+      "title": "Selected",
+      "accent": "works",
+      "intro": "これまでに開発したプロダクトや制作物の一部です。それぞれ、課題・解決・担当範囲・成果をまとめています。"
+    },
+    "filterAll": "すべて",
+    "sort": "NEWEST FIRST ↓"
   },
   "news": {
     "title": "News",
@@ -159,34 +200,102 @@
     "articles": "最新記事",
     "prevPage": "前へ",
     "nextPage": "次へ",
-    "followMe": "SNSでフォロー",
-    "readMore": "続きを読む",
     "viewAll": "すべての記事を見る",
     "noArticles": "現在記事がありません。しばらくお待ちください。",
     "backToList": "記事一覧に戻る",
-    "publishedAt": "公開日"
+    "publishedAt": "公開日",
+    "hero": {
+      "label": "(NEWS) — 最新情報",
+      "title": "Latest",
+      "accent": "news",
+      "intro": "世界一周の旅の記録、制作中のプロジェクト、サイトのお知らせ。技術記事やプロジェクトの最新情報を発信しています。"
+    },
+    "filterAll": "すべて",
+    "sort": "NEWEST FIRST ↓",
+    "latest": "LATEST",
+    "archive": "(ARCHIVE) — 過去の記事",
+    "readOnNote": "note で読む",
+    "readArticle": "記事を読む",
+    "follow": {
+      "label": "(FOLLOW) — SNSでフォロー",
+      "title": "Find me",
+      "accent": "elsewhere"
+    },
+    "pageStatus": "PAGE {current} / {total}"
   },
   "about": {
     "title": "About",
     "subtitle": "自己紹介",
     "bio": "2026年4月より独立し、フリーランスWebエンジニアとして活動しています。フロントエンド・バックエンドを問わず幅広く対応でき、要件定義から設計・実装・リリースまで一気通貫で対応できることが強みです。また、バイブコーディングで作られたアプリを持続可能で拡張性のあるプロダクトへ磨き上げる支援も行っています。",
-    "skills": "スキル・技術",
-    "basic": "基礎",
-    "journeyTitle": "旅の軌跡",
-    "career": "経歴",
-    "current": "現在",
-    "name": "濱野 大志",
-    "nameEn": "Taishi Hamano",
-    "role": "フリーランス Webエンジニア",
-    "location": "日本",
-    "available": "新規案件受付中",
-    "contactCta": "お問い合わせはこちら"
+    "hero": {
+      "label": "(ABOUT) — 自己紹介",
+      "title": "About",
+      "accent": "me."
+    },
+    "meta": {
+      "NAME": "濱野 大志 / Taishi Hamano",
+      "NICKNAME": "はまたい",
+      "ROLE": "フリーランス Webエンジニア / AI導入コンサル",
+      "FROM": "関西",
+      "MODE": "世界一周中のノマド",
+      "FOOD": "スパイスカレー",
+      "HOBBY": "サッカー・ハイキング・キャンプ",
+      "STATUS": "新規案件受付中"
+    },
+    "profile": {
+      "label": "(01) — PROFILE",
+      "statement": "つくって終わりではなく、\n使われ続ける形まで一緒に考えます。",
+      "body": "2026年4月より独立し、フリーランスWebエンジニアとして活動しています。フロントエンド・バックエンドを問わず幅広く対応でき、要件定義から設計・実装・リリースまで一気通貫で対応できることが強みです。\n\n近年はAI導入コンサルとして、業務へのAI活用の支援も行っています。2027年末ごろまでノマドとして世界を旅しながら、各地で開発を続けています。"
+    },
+    "journey": {
+      "label": "(02) — JOURNEY / 旅の軌跡",
+      "title": "The",
+      "accent": "route",
+      "intro": "日本を出発し、台湾から北米、中米へ。いまはエルサルバドルに滞在しながら、南米を縦断して南アフリカを目指します。2027年末ごろまでの旅の予定です。",
+      "logTitle": "ROUTE LOG — {total} COUNTRIES · {visited} VISITED",
+      "legendVisited": "訪問済み",
+      "legendPlanned": "今後の予定",
+      "statusVisited": "VISITED",
+      "statusPlanned": "PLANNED",
+      "now": "NOW",
+      "next": "NEXT →",
+      "nextVia": "中南米を南下",
+      "until": "〜 2027年末ごろ"
+    },
+    "rhythm": {
+      "label": "(03) — DAILY RHYTHM / 1日の過ごし方",
+      "title": "A day",
+      "accent": "on the road",
+      "intro": "場所が変わっても、1日のリズムは崩しません。打ち合わせは朝と夜の枠に集め、日中は作業と街歩きに使っています。",
+      "centerLabel": "A TYPICAL DAY",
+      "centerSub": "ノマドのある1日の例",
+      "legendWork": "仕事",
+      "legendLife": "暮らし・探索",
+      "legendSleep": "睡眠",
+      "items": {
+        "sleep": "就寝",
+        "wake": "起床・シャワー・歯磨き",
+        "meeting": "打ち合わせ",
+        "work": "作業",
+        "sightseeing": "観光・街歩き",
+        "cafe": "カフェで作業",
+        "food": "ローカルフード",
+        "free": "シャワー・自由時間",
+        "evening": "打ち合わせ・作業",
+        "language": "語学学習"
+      }
+    },
+    "career": {
+      "label": "(04) — CAREER / 経歴",
+      "title": "Where I've",
+      "accent": "been",
+      "now": "NOW"
+    }
   },
   "contact": {
     "title": "Contact",
     "subtitle": "お問い合わせ",
     "description": "お仕事のご依頼やご相談はお気軽にどうぞ。通常1〜2営業日以内にご返信いたします。",
-    "ctaTitle": "お仕事のご依頼・ご相談はお気軽に",
     "infoReplyTitle": "返信目安",
     "infoReplyDesc": "1〜2営業日以内",
     "infoEmailTitle": "メール",
@@ -200,7 +309,6 @@
     "email": "メールアドレス",
     "emailPlaceholder": "example@email.com",
     "type": "お問い合わせ種別",
-    "typePlaceholder": "選択してください",
     "message": "お問い合わせ内容",
     "messagePlaceholder": "ご依頼の概要・スケジュール感などをご記入ください（10文字以上）",
     "submit": "送信する",
@@ -216,19 +324,111 @@
       "turnstile": "認証に失敗しました。チェックボックスを再度お試しください。"
     },
     "types": {
-      "webapp": "Webアプリ開発のご依頼",
-      "homepage": "ホームページ制作のご依頼",
-      "notion": "Notion Wiki構築のご依頼",
-      "mobile": "モバイルアプリ開発のご依頼",
-      "rebuild": "バイブコーディング支援のご依頼",
-      "consulting": "技術顧問・コンサルのご依頼",
+      "web": "Web Development",
+      "mobile": "Mobile Apps",
+      "ai": "AI Consulting",
       "other": "その他"
-    }
+    },
+    "hero": {
+      "label": "(CONTACT) — お問い合わせ",
+      "title": "Contact"
+    },
+    "privacyNote": "送信いただいた内容は、ご返信の目的以外には使用しません。"
   },
   "footer": {
     "description": "フリーランスWebエンジニアとして、要件定義から設計・実装・リリースまで一気通貫で対応。Webアプリ開発・ホームページ制作・モバイルアプリ開発に加え、バイブコーディングで作ったアプリの持続可能化もサポートします。",
     "links": "リンク",
     "social": "SNS",
-    "copyright": "© {year} Taishi Hamano. All rights reserved."
+    "copyright": "© {year} Taishi Hamano. All rights reserved.",
+    "tagline": "フリーランスWebエンジニアとして、要件定義から設計・実装・リリースまで一気通貫で対応します。"
+  },
+  "home": {
+    "hero": {
+      "roleLine": "FREELANCE WEB ENGINEER · AI CONSULTANT · SINCE 2026.04",
+      "lead": "要件定義から設計・実装・リリースまで一気通貫。AI導入コンサルも行っています。\n2027年末ごろまでノマドとして世界を旅しています。",
+      "ctaPrimary": "お問い合わせ",
+      "ctaSecondary": "実績を見る",
+      "now": "NOW"
+    },
+    "about": {
+      "label": "(01) — ABOUT",
+      "statement1": "企画の相談から公開後の運用まで一気通貫で、",
+      "statement2": "コミュニケーションを大切にします。",
+      "body": "Webアプリ・ホームページ・Notion Wiki構築・モバイルアプリと幅広い領域に対応。バイブコーディングで作ったアプリを、持続可能で拡張性のあるプロダクトへ磨き上げる支援も行っています。",
+      "strengths": [
+        {
+          "title": "一気通貫",
+          "desc": "要件定義・設計・実装・リリースまでを一人で担当。窓口が一つだから、判断も修正も速く進みます。"
+        },
+        {
+          "title": "持続可能な設計",
+          "desc": "AIで作ったアプリも、コード品質・テスト・アーキテクチャを整えて、保守しやすい形へ。"
+        },
+        {
+          "title": "対話を大切にする",
+          "desc": "専門用語を使わず、進捗や判断の理由をこまめに共有。気軽に相談できる距離感で、認識のズレを早めに防ぎます。"
+        }
+      ]
+    },
+    "works": {
+      "label": "(02) — SELECTED WORKS",
+      "title1": "Selected",
+      "title2": "works",
+      "viewAll": "すべての実績を見る"
+    },
+    "services": {
+      "label": "(03) — SERVICES",
+      "title1": "What I",
+      "title2": "build",
+      "intro": "お客様のニーズに合わせた幅広いサービス。ご予算に寄り添いながら要件を定義し、開発を進めます。",
+      "viewAll": "すべてのサービスを見る",
+      "items": [
+        {
+          "titleEn": "Web Development",
+          "title": "Web開発",
+          "pain": "「アイデアはあるのに形にできない」「ネットで販売したい」「作ったまま放置しているサイトがある…」",
+          "description": "Webアプリ・ECサイト・LP・コーポレートサイトまで、React / Next.js を中心に要件定義から設計・実装・リリースまで一気通貫で対応。SEOや表示速度にも配慮します。",
+          "features": [
+            "Webアプリ・ECサイト・LP・コーポレートサイト",
+            "API・DB設計",
+            "SEO・表示速度の最適化"
+          ]
+        },
+        {
+          "titleEn": "Mobile Apps",
+          "title": "モバイルアプリ開発",
+          "pain": "「アプリ化したいけど、何から手をつければいいかわからない…」",
+          "description": "iOS / Android アプリの開発。クロスプラットフォーム開発で、コスト効率よく高品質なアプリを提供します。",
+          "features": [
+            "iOS / Android 対応",
+            "UI/UX 設計",
+            "ストア申請サポート"
+          ]
+        },
+        {
+          "titleEn": "AI Consulting",
+          "title": "AI導入コンサル",
+          "pain": "「AIを使いたいけど、何から始めて、どう活かせばいいかわからない…」「情報があちこちに散らばっている…」",
+          "description": "業務へのAI導入を、現状整理から活用の定着まで伴走。Notion AIなどを使った社内Wiki・情報基盤の構築も含め、使われ続ける仕組みを整えます。",
+          "features": [
+            "AI活用の現状整理・提案",
+            "Notion Wiki構築",
+            "運用レクチャー"
+          ]
+        }
+      ]
+    },
+    "news": {
+      "label": "(04) — NEWS",
+      "title": "Notes & news",
+      "viewAll": "すべての記事を見る"
+    },
+    "contact": {
+      "label": "(05) — CONTACT",
+      "line1": "Next stop:",
+      "line2": "your project.",
+      "body": "お仕事のご依頼やご相談はお気軽にどうぞ。\n通常1〜2営業日以内にご返信いたします。",
+      "button": "お問い合わせ"
+    }
   }
 }

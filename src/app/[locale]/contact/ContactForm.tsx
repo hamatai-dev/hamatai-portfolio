@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useTranslations } from 'next-intl';
-import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { sendContactEmail } from './actions';
 import { TurnstileWidget, type TurnstileWidgetHandle } from './TurnstileWidget';
 
@@ -19,18 +18,36 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const typeIds = [
-  'webapp',
-  'homepage',
-  'notion',
-  'mobile',
-  'rebuild',
-  'consulting',
-  'other',
-] as const;
+const typeIds = ['web', 'mobile', 'ai', 'other'] as const;
 
 interface Props {
   locale: string;
+}
+
+const inputClass =
+  'w-full border-0 border-b border-line bg-transparent pb-4 text-lg text-paper placeholder:text-paper/30 transition-colors focus:border-accent focus:outline-none';
+
+function Field({
+  label,
+  required,
+  error,
+  children,
+}: {
+  label: string;
+  required?: boolean;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-3.5">
+      <span className="flex items-center gap-2 text-[13px] font-medium text-muted">
+        {label}
+        {required && <span className="font-mono text-accent">*</span>}
+      </span>
+      {children}
+      {error && <p className="text-xs text-accent">{error}</p>}
+    </div>
+  );
 }
 
 export function ContactForm({ locale }: Props) {
@@ -40,12 +57,16 @@ export function ContactForm({ locale }: Props) {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const turnstileRef = useRef<TurnstileWidgetHandle>(null);
 
+  const defaultType = t(`types.${typeIds[0]}`);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: { type: defaultType },
+  });
 
   const onSubmit = async (data: FormData) => {
     if (!turnstileToken) {
@@ -57,7 +78,7 @@ export function ContactForm({ locale }: Props) {
     const result = await sendContactEmail(data, turnstileToken);
     if (result.success) {
       setStatus('success');
-      reset();
+      reset({ type: defaultType });
     } else {
       setStatus('error');
       setIsTurnstileError(result.error === 'turnstile');
@@ -68,89 +89,79 @@ export function ContactForm({ locale }: Props) {
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-center">
-        <CheckCircleIcon className="h-14 w-14 text-success mb-4" />
-        <h3 className="text-primary font-bold text-xl mb-2">{t('successTitle')}</h3>
-        <p className="text-secondary text-sm">{t('successMessage')}</p>
+      <div className="flex flex-col gap-5 border-t border-accent py-12">
+        <p className="font-mono text-xs tracking-[0.08em] text-accent">SENT</p>
+        <h2 className="font-display text-5xl leading-none text-paper lg:text-6xl">
+          {t('successTitle')}
+        </h2>
+        <p className="max-w-[520px] text-base leading-[1.9] text-paper-dim">{t('successMessage')}</p>
       </div>
     );
   }
 
-  const inputClass =
-    'w-full bg-surface-card border border-white/10 rounded-xl px-4 py-3 text-primary text-sm placeholder:text-muted focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-colors';
-  const labelClass = 'block text-primary text-sm font-medium mb-1.5';
-  const errorClass = 'text-red-400 text-xs mt-1';
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-      {/* Name */}
-      <div>
-        <label className={labelClass}>{t('name')} *</label>
-        <input
-          {...register('name')}
-          type="text"
-          placeholder={t('namePlaceholder')}
-          className={inputClass}
-        />
-        {errors.name && <p className={errorClass}>{t('errors.name')}</p>}
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10" noValidate>
+      <div className="grid gap-10 sm:grid-cols-2">
+        <Field label={t('name')} required error={errors.name && t('errors.name')}>
+          <input
+            {...register('name')}
+            type="text"
+            autoComplete="name"
+            placeholder={t('namePlaceholder')}
+            className={inputClass}
+          />
+        </Field>
+        <Field label={t('company')}>
+          <input
+            {...register('company')}
+            type="text"
+            autoComplete="organization"
+            placeholder={t('companyPlaceholder')}
+            className={inputClass}
+          />
+        </Field>
       </div>
 
-      {/* Company */}
-      <div>
-        <label className={labelClass}>{t('company')}</label>
-        <input
-          {...register('company')}
-          type="text"
-          placeholder={t('companyPlaceholder')}
-          className={inputClass}
-        />
-      </div>
-
-      {/* Email */}
-      <div>
-        <label className={labelClass}>{t('email')} *</label>
+      <Field label={t('email')} required error={errors.email && t('errors.email')}>
         <input
           {...register('email')}
           type="email"
+          autoComplete="email"
           placeholder={t('emailPlaceholder')}
           className={inputClass}
         />
-        {errors.email && <p className={errorClass}>{t('errors.email')}</p>}
-      </div>
+      </Field>
 
-      {/* Type */}
-      <div>
-        <label className={labelClass}>{t('type')} *</label>
-        <select
-          {...register('type')}
-          className={`${inputClass} appearance-none cursor-pointer`}
-          defaultValue=""
-        >
-          <option value="" disabled>
-            {t('typePlaceholder')}
-          </option>
-          {typeIds.map((id) => (
-            <option key={id} value={t(`types.${id}`)}>
-              {t(`types.${id}`)}
-            </option>
-          ))}
-        </select>
-        {errors.type && <p className={errorClass}>{t('errors.type')}</p>}
-      </div>
+      <Field label={t('type')} required error={errors.type && t('errors.type')}>
+        <div role="radiogroup" className="flex flex-wrap gap-3">
+          {typeIds.map((id) => {
+            const label = t(`types.${id}`);
+            return (
+              <label key={id} className="cursor-pointer">
+                <input
+                  {...register('type')}
+                  type="radio"
+                  value={label}
+                  className="peer sr-only"
+                />
+                <span className="inline-flex items-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:border-paper peer-checked:border-accent peer-checked:bg-accent peer-checked:text-ink peer-focus-visible:ring-2 peer-focus-visible:ring-accent/50">
+                  {label}
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      </Field>
 
-      {/* Message */}
-      <div>
-        <label className={labelClass}>{t('message')} *</label>
+      <Field label={t('message')} required error={errors.message && t('errors.message')}>
         <textarea
           {...register('message')}
-          rows={6}
+          rows={5}
           placeholder={t('messagePlaceholder')}
-          className={`${inputClass} resize-none`}
+          className={`${inputClass} min-h-[160px] resize-none`}
         />
-        {errors.message && <p className={errorClass}>{t('errors.message')}</p>}
-      </div>
+      </Field>
 
-      {/* Turnstile */}
       <TurnstileWidget
         ref={turnstileRef}
         locale={locale}
@@ -159,24 +170,26 @@ export function ContactForm({ locale }: Props) {
         onError={() => setTurnstileToken(null)}
       />
 
-      {/* Error */}
       {status === 'error' && (
-        <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
-          <ExclamationCircleIcon className="h-5 w-5 text-red-400 shrink-0" />
-          <p className="text-red-400 text-sm">
-            {isTurnstileError ? t('errors.turnstile') : t('errorMessage')}
-          </p>
-        </div>
+        <p
+          role="alert"
+          className="border-l-2 border-accent bg-accent/10 px-4 py-3 text-sm text-paper"
+        >
+          {isTurnstileError ? t('errors.turnstile') : t('errorMessage')}
+        </p>
       )}
 
-      {/* Submit */}
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full py-4 bg-accent text-white rounded-xl font-semibold text-sm hover:bg-accent-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ? t('submitting') : t('submit')}
-      </button>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-xs text-muted">{t('privacyNote')}</p>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex shrink-0 items-center justify-center gap-2.5 rounded-full bg-accent px-9 py-[18px] text-[15px] font-bold text-ink transition-colors hover:bg-paper disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isSubmitting ? t('submitting') : t('submit')}
+          <span aria-hidden>↗</span>
+        </button>
+      </div>
     </form>
   );
 }

@@ -18,21 +18,19 @@ export function LanguageSwitcher() {
 
   return (
     <div
-      className="flex items-center gap-0.5 text-xs font-semibold"
+      className="flex items-center font-mono text-[11px] tracking-[0.14em]"
       aria-label="Language switcher"
     >
       {(['ja', 'en'] as const).map((loc, i) => (
         <span key={loc} className="flex items-center">
-          {i > 0 && (
-            <span className="text-muted mx-1 select-none">/</span>
-          )}
+          {i > 0 && <span className="text-muted mx-1.5 select-none">/</span>}
           <button
             onClick={() => switchLocale(loc)}
             disabled={isPending || locale === loc}
-            className={`px-1 py-0.5 rounded transition-colors ${
+            className={`transition-colors ${
               locale === loc
-                ? 'text-primary cursor-default'
-                : 'text-muted hover:text-secondary'
+                ? 'text-paper cursor-default'
+                : 'text-muted hover:text-paper'
             }`}
           >
             {loc.toUpperCase()}

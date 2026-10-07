@@ -1,22 +1,49 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import {
+  Instrument_Serif,
+  Inter_Tight,
+  JetBrains_Mono,
+  Noto_Sans_JP,
+  Noto_Serif_JP,
+} from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { getTranslations, getLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import LoadingScreen from '@/components/layout/LoadingScreen';
+import { ContactCTASlot } from '@/components/layout/ContactCTASlot';
+import IntroLoader from '@/components/layout/IntroLoader';
+import { ScrollReveal } from '@/components/layout/ScrollReveal';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPersonWebsiteJsonLd } from '@/lib/jsonld';
 import { SITE_URL, GA_MEASUREMENT_ID } from '@/config/site';
 import '../globals.css';
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
   subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+});
+const interTight = Inter_Tight({
+  variable: '--font-inter-tight',
+  subsets: ['latin'],
+});
+const jetBrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
+});
+const notoSansJp = Noto_Sans_JP({
+  variable: '--font-noto-sans-jp',
+  weight: ['400', '500', '700'],
+  preload: false,
+});
+const notoSerifJp = Noto_Serif_JP({
+  variable: '--font-noto-serif-jp',
+  weight: ['500'],
+  preload: false,
 });
 
 export async function generateMetadata({
@@ -66,13 +93,15 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-surface text-primary`}
+        className={`${instrumentSerif.variable} ${interTight.variable} ${jetBrainsMono.variable} ${notoSansJp.variable} ${notoSerifJp.variable} antialiased min-h-screen flex flex-col bg-ink text-paper`}
       >
         <JsonLd data={buildPersonWebsiteJsonLd()} />
-        <LoadingScreen />
         <NextIntlClientProvider>
+          <IntroLoader />
+          <ScrollReveal />
           <Header />
-          <main className="flex-1 pt-16">{children}</main>
+          <main className="flex-1 pt-[98px]">{children}</main>
+          <ContactCTASlot />
           <Footer />
         </NextIntlClientProvider>
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />

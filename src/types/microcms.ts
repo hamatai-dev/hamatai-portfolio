@@ -1,4 +1,4 @@
-export interface MicroCMSThumbnail {
+interface MicroCMSThumbnail {
   url: string;
   width: number;
   height: number;
@@ -10,7 +10,7 @@ export interface MicroCMSCategory {
 }
 
 /** One item of the `tags` repeater field (repeater child text field id: `text`). */
-export interface MicroCMSTagItem {
+interface MicroCMSTagItem {
   fieldId: string;
   text: string;
 }
