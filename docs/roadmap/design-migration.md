@@ -159,3 +159,4 @@ Tailwind では `bg-ink` `bg-ink-2` `text-paper` `text-paper-dim` `border-line` 
 | 2026-10-06 | 旧デザイン由来の CSS・カラートークンを `globals.css` から削除(`bg-surface text-primary` は `bg-ink text-paper` に置換)。`tsc` OK、eslint エラー0、`npm run build` 成功 |
 | 2026-10-06 | Intro Loader のルートを弧状から直線に変更(ユーザー指示)。`tsc` OK、eslint エラー0 |
 | 2026-10-06 | 現在地をサンサルバドルに更新(サンタアナ・エル・トゥンコを追加、El Salvador を訪問済みに)。About の紹介文も更新。`tsc` OK、eslint エラー0 |
+| 2026-10-16 | 現在地をニカラグアのグラナダに更新(サンサルバドル → レオン → グラナダを追加、Nicaragua を訪問済みに・予定国から除外)。`tsc` OK |
