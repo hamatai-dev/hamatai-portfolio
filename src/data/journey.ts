@@ -13,11 +13,12 @@ export interface JourneyStop {
   current?: boolean;
 }
 
-// 実際の渡航ルート。関西空港を出発し、台湾（台北から時計回りで一周・電車）→
+// 実際の渡航ルート。関西空港を出発し、台湾（台北から東回りで一周・電車、台北に戻る）→
 // ロサンゼルス（飛行機）→ ダラス（飛行機）→ ヒューストン→モンテレイ→
 // グアナファト→メキシコシティ→オアハカ→サンクリストバル・デ・ラス・カサス（陸路バス）→
 // グアテマラのパナハチェル（バス）→サンペドロ・ラ・ラグーナ（アティトラン湖をボート）→
-// アンティグア（バス）→エルサルバドルのサンタアナ→エル・トゥンコ→サンサルバドル（現在地、いずれもバス）。
+// アンティグア（バス）→エルサルバドルのサンタアナ→エル・トゥンコ→サンサルバドル→
+// ニカラグアのレオン→グラナダ（現在地、いずれもバス）。
 // この先の中米・南米・南アフリカ〜東アフリカ・エジプトは大まかに決まっている予定ルート
 // （具体的な都市は未定のため、国・地域の代表座標を仮置きしています）。
 export const journeyStops: JourneyStop[] = [
@@ -163,6 +164,24 @@ export const journeyStops: JourneyStop[] = [
     lng: -89.2182,
     transport: 'bus',
     status: 'visited',
+  },
+  {
+    id: 'leon',
+    country: { ja: 'ニカラグア', en: 'Nicaragua' },
+    city: { ja: 'レオン', en: 'León' },
+    lat: 12.4379,
+    lng: -86.8780,
+    transport: 'bus',
+    status: 'visited',
+  },
+  {
+    id: 'granada',
+    country: { ja: 'ニカラグア', en: 'Nicaragua' },
+    city: { ja: 'グラナダ', en: 'Granada' },
+    lat: 11.9344,
+    lng: -85.9560,
+    transport: 'bus',
+    status: 'visited',
     current: true,
   },
   {
@@ -208,7 +227,6 @@ export const currentStop: JourneyStop =
 
 // 今後の予定国(訪問済みの国は journeyStops から導出する)。順番は想定ルート順。
 export const plannedCountries: { ja: string; en: string }[] = [
-  { ja: 'ニカラグア', en: 'Nicaragua' },
   { ja: 'コスタリカ', en: 'Costa Rica' },
   { ja: 'パナマ', en: 'Panama' },
   { ja: 'コロンビア', en: 'Colombia' },
